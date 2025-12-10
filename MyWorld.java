@@ -4,13 +4,14 @@ public class MyWorld extends World {
     int unitWidth = 80;
     
     public PlayerController player = new PlayerController();
+    public PlayerImage playerImage = new PlayerImage();
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1); 
-        addObject(player,836,494);
-        
         prepare();
+        addObject(player,836,494);
+        addObject (playerImage, 0, 0);
     }
     /**
      * Prepare the world for the start of the program.

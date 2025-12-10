@@ -8,10 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerController extends Actor
 {
+    //constant
+    private static final int SPEED = 20;
+    
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public PlayerController () {
+        setImage ("images/emptyController.PNG");
+    }
     public void act()
     {
         // Add your action code here.
@@ -27,13 +33,13 @@ public class PlayerController extends Actor
     
     public void controlPlayer() {
         if (Greenfoot.isKeyDown("left")) {
-            move(-10);
+            move(-SPEED);
         } else if (Greenfoot.isKeyDown("right")) {
-            move(10);
+            move(SPEED);
         } else if (Greenfoot.isKeyDown("Up")) {
-            setLocation (getX(), getY() - 10);
+            setLocation (getX(), getY() - SPEED);
         } else if (Greenfoot.isKeyDown("Down")) {
-            setLocation (getX(), getY() + 10);
+            setLocation (getX(), getY() + SPEED);
         }
         
         if (Greenfoot.isKeyDown("a")) {

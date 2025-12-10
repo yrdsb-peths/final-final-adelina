@@ -16,6 +16,7 @@ public class Food extends Actor
 
     public Food () {
         isBeingHeld = true;
+        setImage ("images/mushroom.PNG");
     }
     public void act()
     {
