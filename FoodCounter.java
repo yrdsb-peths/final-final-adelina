@@ -10,9 +10,9 @@ public class FoodCounter extends Counter
 {
     //variables
     private String type;
-    private GreenfootImage mushroomCounter = new GreenfootImage ("images/mushroomCounter.png");
-    private GreenfootImage tomatoCounter = new GreenfootImage ("images/tomatoCounter.png");
-    private GreenfootImage onionCounter = new GreenfootImage ("images/onionCounter.png");
+    private GreenfootImage mushroomCounter = new GreenfootImage ("images/mushroomCounter.PNG");
+    private GreenfootImage tomatoCounter = new GreenfootImage ("images/tomatoCounter.PNG");
+    private GreenfootImage onionCounter = new GreenfootImage ("images/onionCounter.PNG");
     
     
     public FoodCounter(String type) {

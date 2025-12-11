@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerImage extends Actor
 {
-    private static final GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.png");
-    private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.png");
-    private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.png");
-    private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.png");
+    private static final GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.PNG");
+    private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
+    private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
+    private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
     
     public PlayerImage() {
         setImage(FRONT);

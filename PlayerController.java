@@ -10,7 +10,7 @@ public class PlayerController extends Actor
 {
     //constant
     private static final int SPEED = 20;
-    private GreenfootImage controller = new GreenfootImage ("images/emptyController.png");
+    private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
 
     
     /**

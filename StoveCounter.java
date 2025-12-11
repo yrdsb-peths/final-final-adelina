@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StoveCounter extends Counter
 {
-    private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.png");
+    private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.PNG");
     public StoveCounter() {
         stoveCounter.scale(70, 70);
         setImage (stoveCounter);
