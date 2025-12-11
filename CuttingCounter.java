@@ -11,7 +11,7 @@ public class CuttingCounter extends Counter
     private GreenfootImage cuttingCounter = new GreenfootImage ("images/cuttingCounter.png");
     
     public CuttingCounter() {
-
+        cuttingCounter.scale(70, 70);
         setImage (cuttingCounter);
     }
     

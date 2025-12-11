@@ -20,10 +20,13 @@ public class FoodCounter extends Counter
         this.type = type;
         //set different images according to the vegtable type
         if (type.equals ("mushroom")) {
+            mushroomCounter.scale(70, 70);
             setImage (mushroomCounter);
         } else if (type.equals ("tomato")) {
+            tomatoCounter.scale(70, 70);
             setImage (tomatoCounter);
         } else if (type.equals ("onion")) {
+            onionCounter.scale(70, 70);
             setImage (onionCounter);
         }
     }

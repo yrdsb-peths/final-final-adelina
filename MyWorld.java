@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 public class MyWorld extends World {
-    int unitWidth = 80;
+    int unitWidth = 70;
     int counterOffset = 40;
     
     public PlayerController player = new PlayerController();

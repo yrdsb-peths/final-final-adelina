@@ -10,6 +10,7 @@ public class StoveCounter extends Counter
 {
     private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.png");
     public StoveCounter() {
+        stoveCounter.scale(70, 70);
         setImage (stoveCounter);
     }
     /**
