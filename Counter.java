@@ -10,6 +10,8 @@ public class Counter extends Actor
 {
     private HoldableObject objectOnTop = null;
     public Counter() {
+    public boolean isSelected = false;
+    public Counter(){
     }
     
     /**
@@ -26,8 +28,13 @@ public class Counter extends Actor
         MyWorld world = (MyWorld)getWorld();
         Counter selected = world.player.getSelectedCounter();
     
-        if (this == selected) setImage(selectedImage);
-        else setImage(normalImage);
+        if (this == selected){
+            setImage(selectedImage);
+            checkIfSelected = true;
+        } else {
+            setImage(normalImage);
+            checkIfSelected = false;
+        }
     }
     
     public HoldableObject getIntersectingHoldableObject() {
