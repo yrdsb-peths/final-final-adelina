@@ -17,10 +17,12 @@ public class MyWorld extends World {
         background.scale (1000, 600);
         setBackground (background);
         
+        //set up counter positions and player
         prepare();
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -76,8 +78,8 @@ public class MyWorld extends World {
         }
     }
     
-    public void getFood() {
-        HoldableObject food = new HoldableObject();
-        addObject(food, player.getX(), player.getY());
+    public void getOnion() {
+        Onion onion = new Onion();
+        addObject(onion, player.getX(), player.getY());
     }
 }

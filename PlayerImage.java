@@ -13,11 +13,13 @@ public class PlayerImage extends Actor
     private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
     private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
     
+    private String facingDirection;
+    //image offset in the y direction in relation to the invisible player controller
+    private int offSet = 15;
+    
     public PlayerImage() {
-        FRONT.scale (85, 135);
-        BACK.scale (85, 135);
-        LEFT.scale (85, 135);
-        RIGHT.scale (85, 135);
+        rescaleImages (85, 135);
+        facingDirection = "front";
         setImage(FRONT);
     }
     /**
@@ -31,14 +33,28 @@ public class PlayerImage extends Actor
         changeDirection();
     }
     
+    public void rescaleImages(int width, int height) {
+        FRONT.scale (width, height);
+        BACK.scale (width, height);
+        LEFT.scale (width, height);
+        RIGHT.scale (width, height);
+    }
+    
+    /**
+     * when moving to a direction, change to the corresponding image
+     */
     public void changeDirection() {
         if (Greenfoot.isKeyDown("left")) {
+            facingDirection = "left";
             setImage(LEFT);
         } else if (Greenfoot.isKeyDown("right")) {
+            facingDirection = "right";
             setImage(RIGHT);
-        } else if (Greenfoot.isKeyDown("Up")) {
+        } else if (Greenfoot.isKeyDown("up")) {
+            facingDirection = "back";
             setImage(BACK);
-        } else if (Greenfoot.isKeyDown("Down")) {
+        } else if (Greenfoot.isKeyDown("down")) {
+            facingDirection = "front";
             setImage(FRONT);
         }
     }
@@ -48,9 +64,12 @@ public class PlayerImage extends Actor
      * so that when the controller collide with the counter, 
      * its upper half may overlap the counter image to appear to be closer to it
      */
-    private int offSet = 15;
     public void moveWithPlayerController () {
         MyWorld world = (MyWorld) getWorld();
         setLocation (world.player.getX(), world.player.getY()-offSet);
+    }
+    
+    public String getFacingDirection() {
+        return facingDirection;
     }
 }

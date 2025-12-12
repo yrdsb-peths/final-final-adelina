@@ -9,16 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StoveCounter extends Counter
 {
     private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.PNG");
-<<<<<<< HEAD
+    private GreenfootImage selectedStoveCounter = new GreenfootImage ("images/selectedStoveCounter.PNG");
     int width = 60;
     
     public StoveCounter() {
         stoveCounter.scale(width, width);
-=======
-    private GreenfootImage startingPot = new GreenfootImage
-    public StoveCounter() {
-        setImage()
->>>>>>> main
+        selectedStoveCounter.scale(width, width);
         setImage (stoveCounter);
     }
     /**
@@ -28,5 +24,6 @@ public class StoveCounter extends Counter
     public void act()
     {
         // Add your action code here.
+        checkIfSelected(selectedStoveCounter, stoveCounter);
     }
 }

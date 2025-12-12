@@ -17,6 +17,43 @@ public class Counter extends Actor
      */
     public void act()
     {
-        
+    }
+    
+    /*
+     * public void checkIfSelected(GreenfootImage selectedImageVersion, GreenfootImage normalImage){
+        MyWorld world = (MyWorld) getWorld();
+        setImage (normalImage);
+        if (world.playerImage.getFacingDirection().equals ("front")) {
+            if (getOneObjectAtOffset (0, -40, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+            }
+        } else if (world.playerImage.getFacingDirection().equals ("left")) {
+            if (getOneObjectAtOffset (-40, 0, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+            }
+        } else if (world.playerImage.getFacingDirection().equals ("right")) {
+            if (getOneObjectAtOffset (40, 0, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+            }
+        } else if (world.playerImage.getFacingDirection().equals ("back")) {
+            if (getOneObjectAtOffset (0, 40, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+            }
+        } 
+    }
+     */
+    
+    public void checkIfSelected (GreenfootImage selectedImageVersion, GreenfootImage normalImage){
+        if (getOneObjectAtOffset (0, -40, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+        } else if (getOneObjectAtOffset (-40, 0, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+        } else if (getOneObjectAtOffset (40, 0, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+        } else if (getOneObjectAtOffset (0, 40, PlayerController.class) != null) {
+                setImage (selectedImageVersion);
+        } else {
+            setImage (normalImage);
+        }
     }
 }

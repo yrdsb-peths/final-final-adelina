@@ -6,10 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PlayerController extends Actor
+public class PlayerController extends SuperSmoothMover
 {
     //constant
     private static final int SPEED = 20;
+    //variables
     private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
     int width = 60;
     
@@ -23,7 +24,7 @@ public class PlayerController extends Actor
     }
     public void act()
     {
-        // Add your action code here.
+        // check collision
         int originalX = this.getX();
         int originalY = this.getY();
         
@@ -34,22 +35,46 @@ public class PlayerController extends Actor
         }
     }
     
+    /**
+     * use arrows to move the player
+     * "a" to get or place down holdable objects
+     */
     public void controlPlayer() {
         if (Greenfoot.isKeyDown("left")) {
-            move(-SPEED);
+            setLocation (getX() - SPEED, getY());
         } else if (Greenfoot.isKeyDown("right")) {
-            move(SPEED);
-        } else if (Greenfoot.isKeyDown("Up")) {
+            setLocation (getX()+ SPEED, getY());
+        } else if (Greenfoot.isKeyDown("up")) {
             setLocation (getX(), getY() - SPEED);
-        } else if (Greenfoot.isKeyDown("Down")) {
+        } else if (Greenfoot.isKeyDown("down")) {
             setLocation (getX(), getY() + SPEED);
         }
         
         if (Greenfoot.isKeyDown("a")) {
-            if (getObjectsInRange(1, Counter.class) != null) {
+            if (!getObjectsInRange(1, Counter.class).isEmpty()) {
                 MyWorld world = (MyWorld) getWorld();
-                world.getFood();
+                world.getOnion();
             }
         }
     }
+    
+    /*public void controlPlayer() {
+        if (Greenfoot.isKeyDown("left")) {
+            setLocation (getX() - SPEED, getY());
+        } else if (Greenfoot.isKeyDown("right")) {
+            setLocation (getX()+ SPEED, getY());
+        } else if (Greenfoot.isKeyDown("up")) {
+            setLocation (getX(), getY() - SPEED);
+        } else if (Greenfoot.isKeyDown("down")) {
+            setLocation (getX(), getY() + SPEED);
+        }
+        
+        if (Greenfoot.isKeyDown("a")) {
+            if (!getObjectsInRange(1, Counter.class).isEmpty()) {
+                MyWorld world = (MyWorld) getWorld();
+                world.getOnion();
+            }
+        }
+    }
+    */
 }

@@ -9,10 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NormalCounter extends Counter
 {
     private GreenfootImage normalCounter = new GreenfootImage ("images/normalCounter.PNG");
+    private GreenfootImage selectedNormalCounter = new GreenfootImage ("images/selectedNormalCounter.PNG");
     int width = 60;
     
     public NormalCounter() {
         normalCounter.scale(width, width);
+        selectedNormalCounter.scale(width, width);
         setImage (normalCounter);
     }
     /**
@@ -22,5 +24,6 @@ public class NormalCounter extends Counter
     public void act()
     {
         // Add your action code here.
+        checkIfSelected (selectedNormalCounter, normalCounter);
     }
 }
