@@ -25,6 +25,6 @@ public class CuttingCounter extends Counter
      */
     public void act()
     {
-        // Add your action code here.
+        checkIfSelected(selectedCuttingCounter, cuttingCounter);
     }
 }
