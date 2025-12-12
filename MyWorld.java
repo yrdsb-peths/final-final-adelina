@@ -21,6 +21,7 @@ public class MyWorld extends World {
         prepare();
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
+        
     }
     
     /**
@@ -76,10 +77,15 @@ public class MyWorld extends World {
             counter10[i] = new NormalCounter();
             addObject(counter10[i],20+(i+2)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
         }
+        
+        
+        CuttingCounter cuttingCounter = new CuttingCounter();
+        addObject(cuttingCounter, 410, 330);
     }
     
     public void getOnion() {
         Onion onion = new Onion();
         addObject(onion, player.getX(), player.getY());
+        
     }
 }
