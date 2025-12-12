@@ -81,5 +81,5 @@ public class MyWorld extends World {
     public void getOnion() {
         Onion onion = new Onion();
         addObject(onion, player.getX(), player.getY());
-    }
+    } 
 }
