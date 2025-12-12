@@ -24,15 +24,7 @@ public class PlayerController extends SuperSmoothMover
     }
     public void act()
     {
-        // check collision
-        int originalX = this.getX();
-        int originalY = this.getY();
-        
         controlPlayer();
-        
-        if (getOneIntersectingObject(Counter.class) != null) {
-            setLocation (originalX, originalY);
-        }
     }
     
     /**
@@ -40,41 +32,32 @@ public class PlayerController extends SuperSmoothMover
      * "a" to get or place down holdable objects
      */
     public void controlPlayer() {
-        if (Greenfoot.isKeyDown("left")) {
-            setLocation (getX() - SPEED, getY());
-        } else if (Greenfoot.isKeyDown("right")) {
-            setLocation (getX()+ SPEED, getY());
-        } else if (Greenfoot.isKeyDown("up")) {
-            setLocation (getX(), getY() - SPEED);
-        } else if (Greenfoot.isKeyDown("down")) {
-            setLocation (getX(), getY() + SPEED);
-        }
-        
-        if (Greenfoot.isKeyDown("a")) {
-            if (!getObjectsInRange(1, Counter.class).isEmpty()) {
-                MyWorld world = (MyWorld) getWorld();
-                world.getOnion();
-            }
-        }
-    }
+        int newX = getX();
+        int newY = getY();
     
-    /*public void controlPlayer() {
-        if (Greenfoot.isKeyDown("left")) {
-            setLocation (getX() - SPEED, getY());
-        } else if (Greenfoot.isKeyDown("right")) {
-            setLocation (getX()+ SPEED, getY());
-        } else if (Greenfoot.isKeyDown("up")) {
-            setLocation (getX(), getY() - SPEED);
-        } else if (Greenfoot.isKeyDown("down")) {
-            setLocation (getX(), getY() + SPEED);
-        }
-        
-        if (Greenfoot.isKeyDown("a")) {
-            if (!getObjectsInRange(1, Counter.class).isEmpty()) {
-                MyWorld world = (MyWorld) getWorld();
-                world.getOnion();
-            }
+        if (Greenfoot.isKeyDown("left"))  newX -= SPEED;
+        if (Greenfoot.isKeyDown("right")) newX += SPEED;
+        if (Greenfoot.isKeyDown("up"))    newY -= SPEED;
+        if (Greenfoot.isKeyDown("down"))  newY += SPEED;
+    
+        // Check BEFORE moving
+        if (!willCollide(newX, newY)) {
+            setLocation(newX, newY);
         }
     }
-    */
+
+    private boolean willCollide(int nextX, int nextY) {
+
+        // Temporarily move to next position
+        int oldX = getX();
+        int oldY = getY();
+        setLocation(nextX, nextY);
+    
+        Actor counter = getOneIntersectingObject(Counter.class);
+    
+        // Move back immediately
+        setLocation(oldX, oldY);
+    
+        return counter != null;
+    }
 }

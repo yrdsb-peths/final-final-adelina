@@ -44,13 +44,13 @@ public class Counter extends Actor
      */
     
     public void checkIfSelected (GreenfootImage selectedImageVersion, GreenfootImage normalImage){
-        if (getOneObjectAtOffset (0, -40, PlayerController.class) != null) {
+        if (getOneObjectAtOffset (0, -50, PlayerController.class) != null) {
                 setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (-40, 0, PlayerController.class) != null) {
+        } else if (getOneObjectAtOffset (-50, 0, PlayerController.class) != null) {
                 setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (40, 0, PlayerController.class) != null) {
+        } else if (getOneObjectAtOffset (50, 0, PlayerController.class) != null) {
                 setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (0, 40, PlayerController.class) != null) {
+        } else if (getOneObjectAtOffset (0, 55, PlayerController.class) != null) {
                 setImage (selectedImageVersion);
         } else {
             setImage (normalImage);
