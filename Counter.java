@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Counter extends Actor
 {
+    private HoldableObject objectOnTop = null;
     public Counter() {
     }
     
@@ -19,11 +20,25 @@ public class Counter extends Actor
     {
     }
     
+    //a super class for its subclasses
+    //when is being selected change image to the first parameter
     public void checkIfSelected (GreenfootImage selectedImage, GreenfootImage normalImage){
         MyWorld world = (MyWorld)getWorld();
         Counter selected = world.player.getSelectedCounter();
     
         if (this == selected) setImage(selectedImage);
         else setImage(normalImage);
+    }
+    
+    public HoldableObject getIntersectingHoldableObject() {
+        return (HoldableObject)getOneIntersectingObject (HoldableObject.class);
+    }
+    
+    public void setObjectOnTop(HoldableObject object) {
+        objectOnTop = object;
+    }
+    
+    public HoldableObject getObjectOnTop() {
+        return objectOnTop;
     }
 }

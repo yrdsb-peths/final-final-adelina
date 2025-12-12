@@ -78,8 +78,22 @@ public class MyWorld extends World {
         }
     }
     
-    public void getOnion() {
+    public Onion generateOnion() {
         Onion onion = new Onion();
         addObject(onion, player.getX(), player.getY());
+        onion.setIsBeingHeld (true);
+        return onion;
+    }
+    public Mushroom generateMushroom() {
+        Mushroom mushroom = new Mushroom();
+        addObject(mushroom, player.getX(), player.getY());
+        mushroom.setIsBeingHeld (true);
+        return mushroom;
+    }
+    public Tomato generateTomato() {
+        Tomato tomato = new Tomato();
+        addObject(tomato, player.getX(), player.getY());
+        tomato.setIsBeingHeld (true);
+        return tomato;
     }
 }

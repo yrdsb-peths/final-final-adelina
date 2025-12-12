@@ -1,22 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Onion here.
+ * Write a description of class Mushroom here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Onion extends HoldableObject
+public class Mushroom extends HoldableObject
 {
-    private GreenfootImage onion = new GreenfootImage("images/onion.PNG");
+    private GreenfootImage mushroom = new GreenfootImage ("images/mushroom.PNG");
     int width = 80;
     
-    public Onion() {
-        onion.scale(width, width);
-        setImage (onion);
+    public Mushroom() {
+        mushroom.scale(width, width);
+        setImage (mushroom);
     }
     /**
-     * Act - do whatever the Onion wants to do. This method is called whenever
+     * Act - do whatever the Mushroom wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
