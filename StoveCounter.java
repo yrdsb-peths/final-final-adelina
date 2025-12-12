@@ -10,8 +10,7 @@ public class StoveCounter extends Counter
 {
     private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.PNG");
     private GreenfootImage selectedStoveCounter = new GreenfootImage ("images/selectedStoveCounter.PNG");
-    private GreenfootImage startingPot = new GreenfootImage("images/emptyPot.PNG");
-    private GreenfootImage currentPot = new GreenfootImage("images/emptyPot.PNG");
+    private GreenfootImage emptyPot = new GreenfootImage("images/emptyPot.PNG");
     private Pots pots = new Pots();
     int offset = 5;
     int width = 60;
@@ -20,7 +19,7 @@ public class StoveCounter extends Counter
         stoveCounter.scale(width, width);
         selectedStoveCounter.scale(width, width);
         setImage (stoveCounter);
-        startingPot.scale(width - offset, width - offset);
+        emptyPot.scale(width - offset, width - offset);
         startingPot();
     }
     /**
@@ -34,14 +33,13 @@ public class StoveCounter extends Counter
     }
     public void startingPot()
     {
-        stoveCounter.drawImage(startingPot, 1, -8);
+        stoveCounter.drawImage(emptyPot, 1, -8);
     }
     
     public void placeFood()
     {
-        if(checkIfSelected == true)
+        if(isSelected)
         {
-            
             World world = getWorld();
             world.addObject(pots, getX(), getY());
         }
