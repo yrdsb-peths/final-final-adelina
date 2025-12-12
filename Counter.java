@@ -43,17 +43,11 @@ public class Counter extends Actor
     }
      */
     
-    public void checkIfSelected (GreenfootImage selectedImageVersion, GreenfootImage normalImage){
-        if (getOneObjectAtOffset (0, -50, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (-50, 0, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (50, 0, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-        } else if (getOneObjectAtOffset (0, 55, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-        } else {
-            setImage (normalImage);
-        }
+    public void checkIfSelected (GreenfootImage selectedImage, GreenfootImage normalImage){
+        MyWorld world = (MyWorld)getWorld();
+        Counter selected = world.player.getSelectedCounter();
+    
+        if (this == selected) setImage(selectedImage);
+        else setImage(normalImage);
     }
 }

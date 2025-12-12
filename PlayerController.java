@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
  * Write a description of class Player here.
  * 
@@ -59,5 +59,54 @@ public class PlayerController extends SuperSmoothMover
         setLocation(oldX, oldY);
     
         return counter != null;
+    }
+    
+    //check the number of selected counters
+    public int getNumNearbyCounters() {
+        boolean up    = getOneObjectAtOffset(0, -55, Counter.class) != null;
+        boolean down  = getOneObjectAtOffset(0,  55, Counter.class) != null;
+        boolean left  = getOneObjectAtOffset(-55, 0, Counter.class) != null;
+        boolean right = getOneObjectAtOffset(55, 0, Counter.class) != null;
+        
+        int count = 0;
+        if (up)    count++;
+        if (down)  count++;
+        if (left)  count++;
+        if (right) count++;
+        
+        return count;
+    }
+    
+    //if player is next to only one counter, select that counter
+    //if player is next to two or more counters(e.g. in a corner),
+    //select the one it faces
+    public Counter getSelectedCounter() {
+        int numNearbyCounters = getNumNearbyCounters();
+        if (numNearbyCounters == 0) return null;
+    
+        MyWorld w = (MyWorld)getWorld();
+        String dir = w.playerImage.getFacingDirection();
+    
+        // 1. If only one, return whatever is there
+        if (numNearbyCounters == 1) {
+            if (getOneObjectAtOffset(0, -55, Counter.class) != null) {
+                return (Counter)getOneObjectAtOffset(0, -55, Counter.class);
+            } else if (getOneObjectAtOffset(0, 55, Counter.class) != null) {
+                return (Counter)getOneObjectAtOffset(0, 55, Counter.class);
+            } else if (getOneObjectAtOffset(-55, 0, Counter.class) != null) {
+                return (Counter)getOneObjectAtOffset(-55, 0, Counter.class);
+            } else if (getOneObjectAtOffset(55, 0, Counter.class) != null) {
+                return (Counter)getOneObjectAtOffset(55, 0, Counter.class);
+            }
+        }
+    
+        // 2. If multiple → pick the one in front
+        Counter best = null;
+        if (dir.equals("front") ) best= (Counter)getOneObjectAtOffset (0, 55, Counter.class);
+        else if (dir.equals("back") ) best= (Counter)getOneObjectAtOffset (0, -55, Counter.class);
+        else if (dir.equals("left") ) best= (Counter)getOneObjectAtOffset (-55, 0, Counter.class);
+        else if (dir.equals("right") ) best= (Counter)getOneObjectAtOffset (55, 0, Counter.class);
+    
+        return best;
     }
 }

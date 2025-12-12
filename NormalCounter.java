@@ -25,5 +25,6 @@ public class NormalCounter extends Counter
     {
         // Add your action code here.
         checkIfSelected (selectedNormalCounter, normalCounter);
+        
     }
 }
