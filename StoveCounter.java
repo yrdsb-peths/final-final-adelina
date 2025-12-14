@@ -15,11 +15,9 @@ public class StoveCounter extends Counter
     private GreenfootImage[] mushroomSoup = new GreenfootImage[3];
     private GreenfootImage[] onionSoup = new GreenfootImage[3];
     private boolean hasFoodOnTop = false;
+    private String soupType = ""; //tomato, mushroom, onion
+    private int ingredientCount = -1;
     Pot pot;
-    
-    
-    
-    int indexTomato = 0;
     int offset = 15;
     int width = 60;
     
@@ -49,9 +47,9 @@ public class StoveCounter extends Counter
         Actor top = this.getObjectOnTop();
         
             
-        if(top instanceof Tomato && !hasFoodOnTop)
+        if(!hasFoodOnTop && top != null)
         {
-            addFood();
+            addFood(top);
             hasFoodOnTop = true;
         }
         
@@ -68,19 +66,55 @@ public class StoveCounter extends Counter
         // add pot at the stove's position
         w.addObject(pot, getX(), getY()-offset);
     }
-    private void addFood()
+    private void addFood(Actor top)
     {
-        Actor top = this.getObjectOnTop();
-        
-        if(top instanceof Tomato && indexTomato < tomatoSoup.length - 1)
+        getWorld().removeObject(top);
+        //Decide soup type of first ingerident
+        if(soupType.equals(""))
         {
-            pot.setImage(tomatoSoup[indexTomato]);
-            indexTomato ++;
+            if(top instanceof Tomato){
+                soupType = "tomato";
+            } else if(top instanceof Mushroom){
+                soupType = "mushroom";
+            } else if(top instanceof Onion){
+                soupType = "onion";
+            }else{
+                return;
+            }
+        }
+        //Prevents mixing of ingreident
+        if(!isCorrectIngredient(top)){
+            return;
         }
         
-        if(top != null)
+        //Increase count
+        if(ingredientCount < 2){
+            ingredientCount ++;
+        }
+        
+        changeImageOfPot();
+    }
+    private boolean isCorrectIngredient(Actor top){
+        if(soupType.equals("tomato") && top instanceof Tomato){
+            return true;
+        } else if (soupType.equals("mushroom") && top instanceof Mushroom){
+            return true;
+        } else if(soupType.equals("onion") && top instanceof Onion){
+            return true;
+        }else{
+            return false;
+        }
+    }
+   private void changeImageOfPot(){
+        if(soupType.equals("tomato"))
         {
-            getWorld().removeObject(top);
+            pot.setImage(tomatoSoup[ingredientCount]);
+        }else if(soupType.equals("onion")){
+            pot.setImage(onionSoup[ingredientCount]);
+        }else if(soupType.equals("mushroom")){
+            pot.setImage(mushroomSoup[ingredientCount]);
+        }else{
+            return;
         }
     }
 }
