@@ -46,10 +46,17 @@ public class PlayerController extends SuperSmoothMover
             setLocation(newX, newY);
         }
         
-        if ("a".equals(Greenfoot.getKey())) holdOrPlaceDownHoldableObject();
+        if ("a".equals(Greenfoot.getKey())) {
+            holdOrPlaceDownHoldableObject();
+        }
+        
+        if (Greenfoot.isKeyDown("w")) chop();
+    }
+    
+    public void chop() {
         
     }
-
+    
     private boolean willCollide(int nextX, int nextY) {
 
         // Temporarily move to next position
@@ -179,4 +186,5 @@ public class PlayerController extends SuperSmoothMover
     public void setHoldingObject (HoldableObject object) {
         holdingObject = object;
     }
+    
 }

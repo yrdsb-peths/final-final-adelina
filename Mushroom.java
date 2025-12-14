@@ -18,10 +18,7 @@ public class Mushroom extends HoldableObject
         choppedMushroom.scale(width2, width2);
         setImage (mushroom);
     }
-    /**
-     * Act - do whatever the Mushroom wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act()
     {
         // Add your action code here.

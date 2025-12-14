@@ -12,7 +12,7 @@ public class PlayerImage extends Actor
     private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
     private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
     private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
-    
+    private GreenfootImage[] choppingPlayer = new GreenfootImage[2];
     private String facingDirection;
     //image offset in the y direction in relation to the invisible player controller
     private int offSet = 20;
@@ -20,6 +20,9 @@ public class PlayerImage extends Actor
     public PlayerImage() {
         rescaleImages (85, 135);
         facingDirection = "front";
+        for (int i=0; i<2; i++) {
+            choppingPlayer[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
+        }
         setImage(FRONT);
     }
     /**

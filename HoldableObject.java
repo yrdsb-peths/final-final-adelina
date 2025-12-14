@@ -16,6 +16,7 @@ public class HoldableObject extends Actor
 
     public HoldableObject () {
     }
+    
     public void act()
     {
         if (isBeingHeld) moveWithPlayer();

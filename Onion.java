@@ -18,10 +18,7 @@ public class Onion extends HoldableObject
         choppedOnion.scale(width2, width2);
         setImage (onion);
     }
-    /**
-     * Act - do whatever the Onion wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act()
     {
         // Add your action code here.
