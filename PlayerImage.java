@@ -15,7 +15,7 @@ public class PlayerImage extends Actor
     
     private String facingDirection;
     //image offset in the y direction in relation to the invisible player controller
-    private int offSet = 15;
+    private int offSet = 20;
     
     public PlayerImage() {
         rescaleImages (85, 135);

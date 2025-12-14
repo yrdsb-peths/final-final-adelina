@@ -14,20 +14,21 @@ public class Pot extends HoldableObject
     private GreenfootImage emptyPot = new GreenfootImage("images/emptyPot.PNG");
     
     int width = 60;
+    int height = 105;
     
     public Pot() {
         emptyPot.scale(width, width);
         for (int i=0; i<3; i++) {
             tomatoSoup[i] = new GreenfootImage ("images/tomatoSoup/tomatoSoup" + i + ".PNG");
-            tomatoSoup[i].scale(width, width);
+            tomatoSoup[i].scale(width, height);
         }
         for (int i=0; i<3; i++) {
             mushroomSoup[i] = new GreenfootImage ("images/mushroomSoup/mushroomSoup" + i + ".PNG");
-            mushroomSoup[i].scale(width, width);
+            mushroomSoup[i].scale(width, height);
         }
         for (int i=0; i<3; i++) {
             onionSoup[i] = new GreenfootImage ("images/onionSoup/onionSoup" + i + ".PNG");
-            onionSoup[i].scale(width, width);
+            onionSoup[i].scale(width, height);
         }
     }
 
