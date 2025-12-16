@@ -78,6 +78,9 @@ public class MyWorld extends World {
             counter10[i] = new NormalCounter();
             addObject(counter10[i],20+(i+2)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
         }
+        
+        CuttingCounter counter11 = new CuttingCounter();
+        addObject(counter11, 20+(6)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
     }
     
     public Onion generateOnion() {
