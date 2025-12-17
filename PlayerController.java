@@ -16,14 +16,11 @@ public class PlayerController extends SuperSmoothMover
     boolean isHoldingObject = false;
     private HoldableObject holdingObject = null;
     
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public PlayerController () {
         controller.scale(width,width);
         setImage (controller);
     }
+    
     public void act()
     {
         controlPlayer();
@@ -31,7 +28,8 @@ public class PlayerController extends SuperSmoothMover
 
     /**
      * use arrows to move the player
-     * "a" to get or place down holdable objects
+     * "a" to get or place down holdable objects / add food to pot or plate
+     * "w" to chop
      */
     public void controlPlayer() {
         int newX = getX();
@@ -56,7 +54,9 @@ public class PlayerController extends SuperSmoothMover
             if (choppingConditionSatisfied()) w.playerImage.evokeChoppingAnimation();
         }
     }
-    
+    /**
+     * returns if player will collide with a counter object
+     */    
     private boolean willCollide(int nextX, int nextY) {
 
         // Temporarily move to next position
@@ -72,7 +72,9 @@ public class PlayerController extends SuperSmoothMover
         return counter != null;
     }
     
-    //check the number of selected counters
+    /**
+     * return the number of nearby counter objects
+     */
     public int getNumNearbyCounters() {
         boolean up    = getOneObjectAtOffset(0, -55, Counter.class) != null;
         boolean down  = getOneObjectAtOffset(0,  55, Counter.class) != null;
@@ -88,9 +90,11 @@ public class PlayerController extends SuperSmoothMover
         return count;
     }
     
-    //if player is next to only one counter, select that counter
-    //if player is next to two or more counters(e.g. in a corner),
-    //select the one it faces
+    /**
+     * return one selected counter object:
+     * if player is next to only one counter, select that counter
+     * if player is next to two or more counters(e.g. in a corner),select the one it faces
+     */
     public Counter getSelectedCounter() {
         int numNearbyCounters = getNumNearbyCounters();
         if (numNearbyCounters == 0) return null;
@@ -115,6 +119,9 @@ public class PlayerController extends SuperSmoothMover
         return getCounterInFront(dir);
     }
     
+    /**
+     * return the counter object in front of player
+     */
     public Counter getCounterInFront(String dir) {
         if (dir.equals("front") ) return (Counter)getOneObjectAtOffset (0, 55, Counter.class);
         else if (dir.equals("back") ) return (Counter)getOneObjectAtOffset (0, -55, Counter.class);
@@ -124,7 +131,7 @@ public class PlayerController extends SuperSmoothMover
         return null;
     }
     
-    /*
+    /**
      * if the player is holding an object, place it down
      * if the player is not holding an object, take or generate one
      */
@@ -186,6 +193,9 @@ public class PlayerController extends SuperSmoothMover
         }
     }
     
+    /**
+     * add food to pot if all conditions satisfied
+     */
     private void checkIfAddFoodToPot() {
         //do nothing is player is not holding anything
         if (!isHoldingObject || holdingObject == null) return;
@@ -218,6 +228,9 @@ public class PlayerController extends SuperSmoothMover
 
     }
     
+    /**
+     * remove player holdingObject from world and set player status to not holding objects
+     */
     private void removeHoldingObject() {
         MyWorld w = (MyWorld) getWorld();
         w.removeObject(holdingObject);
@@ -225,6 +238,9 @@ public class PlayerController extends SuperSmoothMover
         isHoldingObject = false;
     }
     
+    /**
+     * change pot status to having one food being added
+     */
     private void changeToOneFoodSoup() {
         Counter selectedCounter = getSelectedCounter();
         HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
@@ -250,6 +266,9 @@ public class PlayerController extends SuperSmoothMover
         removeHoldingObject();
     }
     
+    /**
+     * change pot status to having two foods being added
+     */
     private void changeToTwoFoodSoup() {
         Counter selectedCounter = getSelectedCounter();
         HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
@@ -275,6 +294,9 @@ public class PlayerController extends SuperSmoothMover
         removeHoldingObject();
     }
     
+    /**
+     * change pot status to having three foods being added
+     */
     private void changeToThreeFoodSoup() {
         Counter selectedCounter = getSelectedCounter();
         HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
@@ -304,6 +326,9 @@ public class PlayerController extends SuperSmoothMover
         holdingObject = object;
     }
     
+    /**
+     * returns true if player can chop
+     */
     public boolean choppingConditionSatisfied() {
         MyWorld w = (MyWorld)getWorld();
         String dir = w.playerImage.getFacingDirection();
