@@ -8,6 +8,8 @@ public class MyWorld extends World {
     public PlayerController player = new PlayerController();
     public PlayerImage playerImage = new PlayerImage();
     
+    public Order[] soupOrders = new Order[5];
+    
 
     public MyWorld()
     {    
