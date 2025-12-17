@@ -99,6 +99,9 @@ public class MyWorld extends World {
             counter8[i] = new NormalCounter();
             addObject(counter8[i],20+(11+i)*unitWidth + counterOffset,2*unitWidth+counterOffset);
         }
+        Plate plate1 = new Plate();
+        addObject(plate1, 20+12*unitWidth + counterOffset, 2*unitWidth+counterOffset);
+        counter8[1].setObjectOnTop (plate1);
         
         // left column of counters
         NormalCounter[] counter9 = new NormalCounter[3];
