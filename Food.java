@@ -9,13 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Food extends HoldableObject
 {
     private String type;
-    private int requiredCuttingTime = 500; //5 seconds
+    private int requiredCuttingTime = 300; //3 seconds
     private int currentCuttingTime = 0;
     
     SimpleTimer cuttingTimer = new SimpleTimer();
     
     SuperStatBar cuttingStatusBar;
-    Color green = new Color (117, 207, 112);
+    Color green = new Color (56, 255, 119);
     Color grey = new Color (112, 112, 112);
     
     public void act()

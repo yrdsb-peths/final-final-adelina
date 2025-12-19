@@ -11,6 +11,7 @@ public class MyWorld extends World {
     public Order[] soupOrders = new Order[5];
     
     public SimpleTimer newOrderTimer = new SimpleTimer();
+    private int newOrderTime = 20000; //20 seconds 
     
 
     public MyWorld()
@@ -45,9 +46,12 @@ public class MyWorld extends World {
         return -1; // no empty slot
     }
     
+    /**
+     * generates new order when there is an open slot
+     */
     private void generateNewOrder() {
         // Check if enough time has passed
-        if (newOrderTimer.millisElapsed() < 200) return;
+        if (newOrderTimer.millisElapsed() < newOrderTime) return;
     
         int index = getFirstEmptyOrderSlot();
         if (index == -1) return; // order list full
