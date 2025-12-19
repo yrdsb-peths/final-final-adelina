@@ -11,7 +11,7 @@ public class MyWorld extends World {
     public Order[] soupOrders = new Order[5];
     
     public SimpleTimer newOrderTimer = new SimpleTimer();
-    private int newOrderTime = 20000; //20 seconds 
+    private int newOrderTime = 10000; //20 seconds 
     
 
     public MyWorld()

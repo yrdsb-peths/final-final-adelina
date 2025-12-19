@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Mushroom extends Food
 {
     private GreenfootImage mushroom = new GreenfootImage ("images/mushroom.PNG");
-    private GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
+    public GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
     int width = 80;
     int width2 = 60;
     

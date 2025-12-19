@@ -18,6 +18,8 @@ public class Food extends HoldableObject
     Color green = new Color (56, 255, 119);
     Color grey = new Color (112, 112, 112);
     
+    private boolean hasBeenChopped = false;
+    
     public void act()
     {
         // Add your action code here.
@@ -44,4 +46,15 @@ public class Food extends HoldableObject
         w.addObject(cuttingStatusBar, getX(), getY() + 22);
     }
     
+    public boolean hasBeenChopped() {
+        return hasBeenChopped;
+    }
+    
+    public boolean hasFinishedChopping() {
+        return currentCuttingTime == requiredCuttingTime;
+    }
+    
+    public void setHasBeenChopped(boolean hasBeenChopped) {
+        this.hasBeenChopped = hasBeenChopped;
+    }
 }

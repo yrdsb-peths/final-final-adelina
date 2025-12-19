@@ -57,6 +57,7 @@ public class PlayerController extends SuperSmoothMover
                 w.playerImage.evokeChoppingAnimation();
                 Food cuttingFood = (Food)getSelectedCounter().getObjectOnTop();
                 cuttingFood.increaseCurrentCuttingTime();
+                if (cuttingFood.hasFinishedChopping()) updateFoodToChoppedVersion();
             }
         }
     }
@@ -195,9 +196,11 @@ public class PlayerController extends SuperSmoothMover
         if (!isHoldingObject || holdingObject == null) return;
     
         // Only food can go into pots
-        if (!(holdingObject instanceof Food)) {
-            return;
-        }
+        if (!(holdingObject instanceof Food)) return;
+        
+        // only chopped food can go into pots
+        Food holdingFood = (Food) holdingObject;
+        if(! holdingFood.hasBeenChopped()) return;
         
         //do nothing is no counter nearby
         Counter selectedCounter = getSelectedCounter();
@@ -308,6 +311,9 @@ public class PlayerController extends SuperSmoothMover
         holdingObject = object;
     }
     
+    /**
+     * returns true if player can chop
+     */
     public boolean choppingConditionSatisfied() {
         MyWorld w = (MyWorld)getWorld();
         String dir = w.playerImage.getFacingDirection();
@@ -319,7 +325,30 @@ public class PlayerController extends SuperSmoothMover
         
         if ( !(counterInFront.getObjectOnTop() instanceof Food)) return false;
         
+        Food foodOnTop = (Food) counterInFront.getObjectOnTop();
+        if (foodOnTop.hasBeenChopped()) return false;
+        
         return true;
+    }
+    
+    private void updateFoodToChoppedVersion() {
+        MyWorld w = (MyWorld)getWorld();
+        String dir = w.playerImage.getFacingDirection();
+        Counter counterInFront = getCounterInFront(dir);
+        Food foodOnTop = (Food) counterInFront.getObjectOnTop();
+        
+        foodOnTop.setHasBeenChopped(true);
+        
+        if (foodOnTop.getType().equals("mushroom")) {
+            Mushroom mushroom = (Mushroom) foodOnTop;
+            mushroom.setImage(mushroom.choppedMushroom);
+        } else if (foodOnTop.getType().equals("onion")) {
+            Onion onion = (Onion) foodOnTop;
+            onion.setImage(onion.choppedOnion);
+        } else if (foodOnTop.getType().equals("tomato")) {
+            Tomato tomato = (Tomato) foodOnTop;
+            tomato.setImage(tomato.choppedTomato);
+        }
     }
     
 }
