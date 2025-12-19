@@ -41,7 +41,7 @@ public class Food extends HoldableObject
     }
     
     protected void addedToWorld(World w) {
-        w.addObject(cuttingStatusBar, getX(), getY() - 22);
+        w.addObject(cuttingStatusBar, getX(), getY() + 22);
     }
     
 }

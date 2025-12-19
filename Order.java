@@ -16,6 +16,11 @@ public class Order extends Actor
     
     private int orderTime = 30000; //30 seconds
     private SimpleTimer orderTimer = new SimpleTimer();
+    private SuperStatBar countDownBar;
+    Color blue = new Color (0, 227, 216);
+    Color grey = new Color (112, 112, 112);
+    Color yellow = new Color (227, 204, 0);
+    Color red = new Color (196, 23, 0);
     
     public Order() {
         tomatoSoupOrder.scale(width, height);
@@ -24,13 +29,20 @@ public class Order extends Actor
         
         createRandomOrder();
         orderTimer.mark();
+        
+        countDownBar = new SuperStatBar(orderTime, orderTime, this, 110, 5, -40, blue, grey);
     }
     
     public void act()
     {
+        updateCountDownBar();
         if (orderTimer.millisElapsed() > orderTime) {
             removeSelf();
         }
+    }
+    
+    protected void addedToWorld(World w) {
+        w.addObject(countDownBar, getX(), getY() - 30);
     }
     
     private void createRandomOrder() {
@@ -52,5 +64,20 @@ public class Order extends Actor
         }
     
         w.removeObject(this);
+        w.removeObject(countDownBar);
+    }
+    
+    private void updateCountDownBar() {
+        int elapsed = orderTimer.millisElapsed();
+        int remainingTime = orderTime - elapsed;
+        countDownBar.update (remainingTime);
+        
+        if (remainingTime < 5000) {
+            countDownBar.setColors(red, grey);
+        } else if (remainingTime < 10000) {
+            countDownBar.setColors(yellow, grey);
+        } else {
+            countDownBar.setColors(blue, grey);
+        }
     }
 }
