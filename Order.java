@@ -38,8 +38,11 @@ public class Order extends Actor
     public void act()
     {
         updateCountDownBar();
+        MyWorld w = (MyWorld) getWorld();
         if (orderTimer.millisElapsed() > orderTime) {
             removeSelf();
+            //generate a new order to replace the expired one
+            w.generateNewOrderAtFirstEmptySlot();
         }
     }
     

@@ -34,8 +34,12 @@ public class MyWorld extends World {
         addObject(soupOrders[0],20+unitWidth, 90/2);
         newOrderTimer.mark();
     }
+    
     public void act() {
-        generateNewOrder();
+        if (newOrderTimer.millisElapsed() >= newOrderTime){
+            generateNewOrderAtFirstEmptySlot();
+        }
+
     }
     
     private int getFirstEmptyOrderSlot() {
@@ -48,12 +52,9 @@ public class MyWorld extends World {
     }
     
     /**
-     * generates new order when there is an open slot
+     * generates new order 
      */
-    private void generateNewOrder() {
-        // Check if enough time has passed
-        if (newOrderTimer.millisElapsed() < newOrderTime) return;
-    
+    public void generateNewOrderAtFirstEmptySlot() {
         int index = getFirstEmptyOrderSlot();
         if (index == -1) return; // order list full
     
@@ -62,6 +63,13 @@ public class MyWorld extends World {
     
         soupOrders[index] = order;
         newOrderTimer.mark();
+        
+    }
+    
+    /**
+     * moves orders to the left when an order has been served
+     */
+    public void moveOrdersForward() {
         
     }
     
