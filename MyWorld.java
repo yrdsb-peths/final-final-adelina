@@ -109,10 +109,13 @@ public class MyWorld extends World {
         counter8[1].setObjectOnTop (plate1);
         
         //delivery counter
+        NormalCounter counter12 = new NormalCounter();
+        addObject (counter12, 20+(13)*unitWidth + counterOffset,3*unitWidth+counterOffset);
+        
         LeftDeliveryCounter deliveryCounter = new LeftDeliveryCounter();
-        addObject(deliveryCounter, 20+14*unitWidth, 4*unitWidth);
+        addObject(deliveryCounter, 20+14*unitWidth, 5*unitWidth);
     
-        addObject (plateCounter, 20+14*unitWidth - counterOffset, 5*unitWidth + counterOffset);
+        addObject (plateCounter, 20+14*unitWidth - counterOffset, 6*unitWidth + counterOffset);
         
         // left column of counters
         NormalCounter[] counter9 = new NormalCounter[3];
