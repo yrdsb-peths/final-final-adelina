@@ -8,18 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class DeliveryCounter extends Counter
 {
-    private GreenfootImage deliveryCounter = new GreenfootImage ("images/deliveryCounter.PNG");
-    private GreenfootImage selectedDeliveryCounter = new GreenfootImage ("images/selectedDeliveryCounter.PNG");
+    GreenfootImage deliveryCounter = new GreenfootImage ("images/deliveryCounter.PNG");
+    GreenfootImage selectedDeliveryCounter = new GreenfootImage ("images/selectedDeliveryCounter.PNG");
   
     int width = 120;
-    public DeliveryCounter() {
-        deliveryCounter.scale (width, width);
-        selectedDeliveryCounter.scale (width, width);
-    }
+    
+    String facingDirection;
     
     public void act()
     {
         // Add your action code here.
-        checkIfSelected(selectedDeliveryCounter, deliveryCounter);
     }
 }

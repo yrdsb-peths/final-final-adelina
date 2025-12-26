@@ -193,14 +193,18 @@ public class PlayerController extends SuperSmoothMover
                  * 1. player is holding an object
                  * 2. there is a selected Counter
                  * 3. there is no object on top of the selected Counter
+                 * 4. selected counter is not a plate counter or a delivery counter
                  */
-                if (selectedObject == null){
-                    holdingObject.setLocation (selectedCounter.getX(), selectedCounter.getY());
-                    selectedCounter.setObjectOnTop (holdingObject);
-                    holdingObject.setIsBeingHeld(false);
-                    holdingObject = null;
-                    isHoldingObject = false;
-                }
+                if (selectedObject != null) return;
+                if (selectedCounter instanceof PlateCounter) return;
+                if (selectedCounter instanceof DeliveryCounter) return;
+                
+                holdingObject.setLocation (selectedCounter.getX(), selectedCounter.getY());
+                selectedCounter.setObjectOnTop (holdingObject);
+                holdingObject.setIsBeingHeld(false);
+                holdingObject = null;
+                isHoldingObject = false;
+            
                 
             } else {
                 
