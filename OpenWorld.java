@@ -11,22 +11,30 @@ public class OpenWorld extends World
     GreenfootImage background = new GreenfootImage ("images/openGameImage.PNG");
     Color color = new Color (0, 71, 87);
     Button startButton, instructionButton;
+    Label startLabel, instructionLabel;
     
     public OpenWorld()
     {    
         super(1000, 600, 1); 
         setBackground (background);
+        setPaintOrder(Label.class, Button.class);
         
-        instructionButton = new Button("HELP", 160, 60, color, 35);
+        instructionLabel = new Label ("HELP", 35);
+        instructionButton = new Button(160, 60, color);
+        addObject(instructionLabel, 110, 550);
         addObject(instructionButton, 110, 550);
         
-        startButton = new Button("START", 160, 60, color, 35);
+        startLabel = new Label ("START", 35);
+        startButton = new Button(160, 60, color);
+        addObject(startLabel, 890, 550);
         addObject(startButton, 890, 550);
     }
     
     public void act(){
-        if (Greenfoot.mouseClicked(instructionButton)) {
+        if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
             Greenfoot.setWorld (new InstructionWorld());
+        } else if (Greenfoot.mouseClicked(startLabel) || Greenfoot.mouseClicked(startButton)) {
+            Greenfoot.setWorld (new LevelWorld());
         }
     }
 }
