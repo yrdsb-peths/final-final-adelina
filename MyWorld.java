@@ -2,14 +2,20 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     public int unitWidth = 60;
-    int counterOffset = unitWidth/2;
+    private int counterOffset = unitWidth/2;
     private GreenfootImage background = new GreenfootImage("images/background.PNG");
     
     public PlayerController player = new PlayerController();
     public PlayerImage playerImage = new PlayerImage();
     public PlateCounter plateCounter = new PlateCounter();
+    private Label pointLabel;
+    private Label countDownLabel;
+    private int remainingGameTime = 180000;//3 min
+    private int points = 0;
     
     public Order[] soupOrders = new Order[5];
+    private int unitOrderEarning = 20;
+    private int unitOrderDecrease = 10;
     
     public SimpleTimer newOrderTimer = new SimpleTimer();
     private int newOrderTime = 10000; //20 seconds 
@@ -17,18 +23,26 @@ public class MyWorld extends World {
 
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         
         background.scale (1000, 600);
         setBackground (background);
         
         setPaintOrder(SuperStatBar.class, HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
+        pointLabel = new Label(0, 60);
+        countDownLabel = new Label("3:00", 60);
         
         //set up counter positions and player
         prepare();
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
+        
+        Coin coin = new Coin();
+        addObject(coin, 20+unitWidth, 9*unitWidth - 20);
+        addObject (pointLabel, 20+unitWidth, 9*unitWidth-10);
+        Clock clock = new Clock();
+        addObject(clock, 20+15*unitWidth, 9*unitWidth-20);
+        addObject(countDownLabel, 20+15*unitWidth, 9*unitWidth-10);
         
         soupOrders[0] = new Order();
         addObject(soupOrders[0],20+unitWidth, 90/2);
@@ -152,5 +166,14 @@ public class MyWorld extends World {
         addObject(tomato, player.getX(), player.getY());
         tomato.setIsBeingHeld (true);
         return tomato;
+    }
+    
+    public void increasePoints() {
+        points += unitOrderEarning;
+        pointLabel.setValue (points);
+    }
+    public void decreasePoints() {
+        points -= unitOrderDecrease;
+        pointLabel.setValue (points);
     }
 }

@@ -20,24 +20,16 @@ javadoc
 UTF-8
 -charset
 UTF-8
-/Users/yawenlu/Documents/GitHub/final-final-adelina/SuperStatBar.java
+/Users/yawenlu/Documents/GitHub/final-final-adelina/Label.java
 <---- end of javadoc command ---->
-Loading source file /Users/yawenlu/Documents/GitHub/final-final-adelina/SuperStatBar.java...
+Loading source file /Users/yawenlu/Documents/GitHub/final-final-adelina/Label.java...
 Constructing Javadoc information...
 warning: unknown enum constant Tag.Any
   reason: class file for threadchecker.Tag not found
 warning: unknown enum constant Tag.Any
-warning: unknown enum constant Tag.Any
-warning: unknown enum constant Tag.Any
 Standard Doclet version 21.0.4+7-LTS
 Building tree for all the packages and classes...
-Generating /Users/yawenlu/Documents/GitHub/final-final-adelina/doc/SuperStatBar.html...
-/Users/yawenlu/Documents/GitHub/final-final-adelina/SuperStatBar.java:179: warning: @param argument "maxVal" is not a parameter name.
-     *  @param  maxVal[]  the maximum values for each stat
-        ^
-/Users/yawenlu/Documents/GitHub/final-final-adelina/SuperStatBar.java:180: warning: @param argument "currVal" is not a parameter name.
-     *  @param currVal[]  the starting values for each stat
-        ^
+Generating /Users/yawenlu/Documents/GitHub/final-final-adelina/doc/Label.html...
 Generating /Users/yawenlu/Documents/GitHub/final-final-adelina/doc/package-summary.html...
 Generating /Users/yawenlu/Documents/GitHub/final-final-adelina/doc/index.html...
-6 warnings
+2 warnings

@@ -91,6 +91,7 @@ public class PlayerController extends SuperSmoothMover
             Plate plate = new Plate();
             w.plateCounter.setObjectOnTop(plate);
             w.addObject(plate, w.plateCounter.getX(), w.plateCounter.getY());
+            w.increasePoints();
         } else {
             return;
         }

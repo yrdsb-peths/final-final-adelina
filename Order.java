@@ -39,6 +39,8 @@ public class Order extends Actor
     {
         updateCountDownBar();
         if (orderTimer.millisElapsed() > orderTime) {
+            MyWorld w = (MyWorld) getWorld();
+            w.decreasePoints();
             removeSelf();
         }
     }
