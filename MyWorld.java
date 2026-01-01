@@ -50,6 +50,18 @@ public class MyWorld extends World {
     }
     public void act() {
         generateNewOrder();
+        
+        remainingGameTime -= 20; //act runs once in approx 20 millis
+        if (remainingGameTime%1000 == 0) {
+            updateCountDownLabel();
+        }
+    }
+    
+    private void updateCountDownLabel() {
+        int mins = remainingGameTime / 60000; // remaningGameTime/numMillisInSecond
+        int seconds = (remainingGameTime % 60000) / 1000;
+        if (seconds>=10) countDownLabel.setValue (mins + ":" + seconds);
+        else countDownLabel.setValue (mins + ":0" + seconds);
     }
     
     private int getFirstEmptyOrderSlot() {
