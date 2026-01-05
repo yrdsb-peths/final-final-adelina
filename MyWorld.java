@@ -20,7 +20,7 @@ public class MyWorld extends World {
     public SimpleTimer newOrderTimer = new SimpleTimer();
     private int newOrderTime = 10000; //20 seconds 
     
-
+    
     public MyWorld()
     {    
         super(1000, 600, 1); 
