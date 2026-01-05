@@ -21,7 +21,7 @@ public class MyWorld extends World {
     private int newOrderTime = 10000; //20 seconds 
     
     
-    public MyWorld()
+    public MyWorld(int level)
     {    
         super(1000, 600, 1); 
         
@@ -32,9 +32,7 @@ public class MyWorld extends World {
         pointLabel = new Label(0, 60);
         countDownLabel = new Label("3:00", 60);
         
-        //set up counter positions and player
-        prepare();
-        addObject(player,836,494);
+        addObject(player,20+11*unitWidth+counterOffset,7*unitWidth + counterOffset);
         addObject (playerImage, 0, 0);
         
         Coin coin = new Coin();
@@ -47,6 +45,14 @@ public class MyWorld extends World {
         soupOrders[0] = new Order();
         addObject(soupOrders[0],20+unitWidth, 90/2);
         newOrderTimer.mark();
+        
+        if (level == 1) {
+            prepareLevelOne();
+        } else if (level == 2) {
+            prepareLevelTwo();
+        } else if (level == 3) {
+            prepareLevelThree();
+        }
     }
     public void act() {
         generateNewOrder();
@@ -95,7 +101,7 @@ public class MyWorld extends World {
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
-    private void prepare()
+    private void prepareLevelOne()
     {
         //first row of counters
         NormalCounter[] counter1 = new NormalCounter[3];
@@ -159,6 +165,14 @@ public class MyWorld extends World {
         
         CuttingCounter counter11 = new CuttingCounter();
         addObject(counter11, 20+(6)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
+    }
+    
+    private void prepareLevelTwo() {
+        
+    }
+    
+    private void prepareLevelThree() {
+        
     }
     
     public Onion generateOnion() {
