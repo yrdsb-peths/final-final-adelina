@@ -34,7 +34,8 @@ public class OpenWorld extends World
         if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
             Greenfoot.setWorld (new InstructionWorld());
         } else if (Greenfoot.mouseClicked(startLabel) || Greenfoot.mouseClicked(startButton)) {
-            Greenfoot.setWorld (new LevelWorld());
+            GameState s = new GameState();
+            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
         }
     }
 }

@@ -28,7 +28,9 @@ public class InstructionWorld extends World
     
     public void act() {
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
-            Greenfoot.setWorld (new LevelWorld());
+            GameState s = new GameState();
+            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
+            
         }
     }
 }

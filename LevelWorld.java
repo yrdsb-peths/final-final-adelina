@@ -11,15 +11,14 @@ public class LevelWorld extends World
     GreenfootImage background = new GreenfootImage ("images/levelBackground.PNG");
     LevelButton level1, level2, level3 ;
     
-    public LevelWorld()
+    public LevelWorld(boolean level1Unlocked, boolean level2Unlocked, boolean level3Unlocked)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         setBackground (background);
         
-        level1 = new LevelButton (1, true);
-        level2 = new LevelButton (2, false);
-        level3 = new LevelButton (3, false);
+        level1 = new LevelButton (1, level1Unlocked);
+        level2 = new LevelButton (2, level2Unlocked);
+        level3 = new LevelButton (3, level3Unlocked);
         
         addObject (level1,235, 300);
         addObject (level2,500, 300);

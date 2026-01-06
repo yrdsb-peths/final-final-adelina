@@ -9,15 +9,57 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EndWorld extends World
 {
     GreenfootImage endImage = new GreenfootImage ("images/endImage.PNG");
+    GreenfootImage zeroStar = new GreenfootImage ("imges/zeroStar.PNG");
+    GreenfootImage oneStar = new GreenfootImage ("imges/oneStar.PNG");
+    GreenfootImage twoStar = new GreenfootImage ("imges/twoStar.PNG");
+    GreenfootImage threeStar = new GreenfootImage ("imges/threeStar.PNG");
     
-    int level;
-    int levelOneRecord;
-    int levelTwoRecord;
+    Label completeLabel = new Label ("COMPLETE", 60);
+    Label ordersDeliveredLabel = new Label ("Orders Delivered", 20);
+    Label ordersFailedLabel = new Label ("Orders Failed", 20);
+    Label totalLabel = new Label ("TOTAL", 30);
     
-    public EndWorld()
+    Label levelLabel;
+    Label ordersDeliveredCalculation;
+    Label ordersFailedCalculation;
+    Label totalCalculation;
+    
+    Color color = new Color (100, 100, 100);
+    Color white = new Color (155, 155, 155);
+    public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
-        
         setBackground(endImage);
+        
+        addObject(completeLabel, 8*60 + 20, 60+30);
+        addObject(ordersDeliveredLabel, 6*60 + 63, 3*60 + 3);
+        addObject(ordersFailedLabel, 6*60 + 50, 4*60);
+        addObject(totalLabel, 6*60 + 50,5*60+3);
+        
+        levelLabel = new Label ("Level " + level, 30);
+        addObject (levelLabel, 8*60 + 20, 2*60+15);
+        
+        ordersDeliveredCalculation = new Label (numDelivered + " x 20 = " + (numDelivered*20), 20);
+        addObject (ordersDeliveredCalculation, 9*60 + 20 + 30, 3*60 + 3);
+        ordersFailedCalculation = new Label (numFailed + " x 10 = " + (numFailed*10), 20);
+        addObject (ordersFailedCalculation, 9*60 + 20 + 30, 4*60);
+        totalCalculation = new Label (numDelivered*20-numFailed*10, 50);
+        addObject (totalCalculation, 9*60 + 20 + 30, 5*60+3);
+        
+        ordersDeliveredCalculation.setFillColor(color);
+        ordersFailedCalculation.setFillColor(color);
+        levelLabel.setFillColor(color);
+        ordersDeliveredLabel.setFillColor(color);
+        ordersFailedLabel.setFillColor(color);
+        totalCalculation.setFillColor(color);
+        totalLabel.setFillColor(color);
+        
+        ordersDeliveredCalculation.setLineColor(color);
+        ordersFailedCalculation.setLineColor(color);
+        levelLabel.setLineColor(color);
+        ordersDeliveredLabel.setLineColor(color);
+        ordersFailedLabel.setLineColor(color);
+        totalCalculation.setLineColor(color);
+        totalLabel.setLineColor(color);
     }
 }
