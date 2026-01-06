@@ -168,7 +168,7 @@ public class MyWorld extends World {
     }
     
     private void prepareLevelTwo() {
-        Counter[] counterRow1 = new Counter[6];
+        Counter[] counterRow1 = new Counter[5];
         for (int i=0; i<counterRow1.length; i++) {
             if (i==0 || i==2){
                 counterRow1[i] = new StoveCounter();
@@ -176,7 +176,7 @@ public class MyWorld extends World {
                 counterRow1[i] = new NormalCounter();
             }
             
-            addObject(counterRow1[i], 20 + counterOffset + (4+i)*unitWidth, counterOffset + 2*unitWidth);
+            addObject(counterRow1[i], 20 + counterOffset + (5+i)*unitWidth, counterOffset + 2*unitWidth);
         }
         FrontDeliveryCounter deliveryCounter = new FrontDeliveryCounter();
         addObject(deliveryCounter, 20 + 11*unitWidth, 2*unitWidth);
