@@ -9,10 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EndWorld extends World
 {
     GreenfootImage endImage = new GreenfootImage ("images/endImage.PNG");
-    GreenfootImage zeroStar = new GreenfootImage ("imges/zeroStar.PNG");
-    GreenfootImage oneStar = new GreenfootImage ("imges/oneStar.PNG");
-    GreenfootImage twoStar = new GreenfootImage ("imges/twoStar.PNG");
-    GreenfootImage threeStar = new GreenfootImage ("imges/threeStar.PNG");
     
     Label completeLabel = new Label ("COMPLETE", 60);
     Label ordersDeliveredLabel = new Label ("Orders Delivered", 20);
@@ -25,7 +21,13 @@ public class EndWorld extends World
     Label totalCalculation;
     
     Color color = new Color (100, 100, 100);
-    Color white = new Color (155, 155, 155);
+    
+    Button continueButton;
+    Color blue = new Color (0, 71, 87);
+    Label continueLabel;
+    
+    Star star = new Star();
+    
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
@@ -61,5 +63,20 @@ public class EndWorld extends World
         ordersFailedLabel.setLineColor(color);
         totalCalculation.setLineColor(color);
         totalLabel.setLineColor(color);
+        
+        continueLabel = new Label ("continue", 35);
+        continueButton = new Button (160, 60, blue);
+        addObject(continueButton, 8*60 + 20, 8*60 + 20);
+        addObject(continueLabel, 8*60 + 20, 8*60 + 20);
+        
+        addObject(star, 8*60 + 20, 6*60 + 20);
+    }
+    
+    public void act() {
+        if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
+            GameState s = new GameState();
+            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
+            
+        }
     }
 }
