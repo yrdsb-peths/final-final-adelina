@@ -88,9 +88,7 @@ public class PlayerController extends SuperSmoothMover
         
         if (existMatchingOrder) {
             removeHoldingObject();
-            Plate plate = new Plate();
-            w.plateCounter.setObjectOnTop(plate);
-            w.addObject(plate, w.plateCounter.getX(), w.plateCounter.getY());
+            w.plateCounter.increaseNumPlateOnTop();
             w.increasePoints();
             w.increaseNumOrderDelivered();
         } else {
@@ -250,6 +248,12 @@ public class PlayerController extends SuperSmoothMover
                     holdingObject = selectedObject;
                     isHoldingObject = true;
                     selectedCounter.setObjectOnTop(null);
+                    // if player is taking a plate off the plate counter, 
+                    //reduce the number of plate on top
+                    if(selectedCounter instanceof PlateCounter){
+                        MyWorld w = (MyWorld) getWorld();
+                        w.plateCounter.decreaseNumPlateOnTop();
+                    }
                     
                     /*
                      * if no object on the nearby Counter, check if it is a food counter

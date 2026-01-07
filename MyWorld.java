@@ -222,6 +222,15 @@ public class MyWorld extends World {
             addObject(counterColumn2[i], 20 + counterOffset + 8*unitWidth, counterOffset + (3+i)*unitWidth);
         }
         
+        Plate plate1 = new Plate();
+        Plate plate2 = new Plate();
+        Plate plate3 = new Plate();
+        addObject (plate1, 20 + counterOffset + 2*unitWidth, counterOffset + (4)*unitWidth);
+        addObject (plate2, 20 + counterOffset + 2*unitWidth, counterOffset + (5)*unitWidth);
+        addObject (plate3, 20 + counterOffset + 2*unitWidth, counterOffset + (6)*unitWidth);
+        counterColumn1[1].setObjectOnTop(plate1);
+        counterColumn1[2].setObjectOnTop(plate2);
+        counterColumn1[3].setObjectOnTop(plate3);
     }
     
     private void prepareLevelThree() {
