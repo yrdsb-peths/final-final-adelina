@@ -14,11 +14,13 @@ public class EndWorld extends World
     Label ordersDeliveredLabel = new Label ("Orders Delivered", 20);
     Label ordersFailedLabel = new Label ("Orders Failed", 20);
     Label totalLabel = new Label ("TOTAL", 30);
+    Label recordLabel = new Label ("record", 18);
     
     Label levelLabel;
     Label ordersDeliveredCalculation;
     Label ordersFailedCalculation;
     Label totalCalculation;
+    Label recordNum;
     
     Color color = new Color (100, 100, 100);
     
@@ -44,6 +46,7 @@ public class EndWorld extends World
     int level;
     int numDelivered;
     int numFailed;
+    int recordScore;
     
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
@@ -54,18 +57,41 @@ public class EndWorld extends World
         totalScore = numDelivered*20-numFailed*10;
         this.numDelivered = numDelivered;
         this.numFailed = numFailed;
+        updateGameState();
         
         addTexts();
         setTextColor();
         addContinueButton();
         setStarImage();
+        
     }
     
     public void act() {
+        //if clicks on the continue button, go to level world
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
-            GameState s = new GameState();
-            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
-            
+            Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked));
+        }
+    }
+    
+    public void updateGameState() {
+        //if player scores one star or higher on level one, level 2 will be unlocked
+        if (level == 1 && totalScore >= levelOneOneStarScore) GameState.level2Unlocked = true;
+        
+        //if player scores one star or higher on level two, level 3 will be unlocked
+        if (level == 2 && totalScore >= levelTwoOneStarScore) GameState.level3Unlocked = true;
+        
+        //if player total score is higher than record score, update record
+        if (level == 1 && totalScore > GameState.level1RecordScore){
+            GameState.level1RecordScore = totalScore;
+            recordScore = GameState.level1RecordScore;
+        }
+        if (level == 2 && totalScore > GameState.level2RecordScore){
+            GameState.level2RecordScore = totalScore;
+            GameState.level2RecordScore = totalScore;
+        }
+        if (level == 3 && totalScore > GameState.level3RecordScore){
+            GameState.level3RecordScore = totalScore;
+            GameState.level3RecordScore = totalScore;
         }
     }
     
@@ -85,6 +111,10 @@ public class EndWorld extends World
         
         totalCalculation = new Label (totalScore, 50);
         addObject (totalCalculation, 9*60 + 20 + 30, 5*60+3);
+        
+        addObject (recordLabel,6*60 + 50 ,7*60 + 20);
+        recordNum = new Label (recordScore, 18);
+        addObject (recordNum, 9*60 + 20 + 30, 7*60 + 20);
     }
     
     public void setTextColor() {
@@ -95,6 +125,8 @@ public class EndWorld extends World
         ordersFailedLabel.setFillColor(color);
         totalCalculation.setFillColor(color);
         totalLabel.setFillColor(color);
+        recordLabel.setFillColor(color);
+        recordNum.setFillColor(color);
         
         ordersDeliveredCalculation.setLineColor(color);
         ordersFailedCalculation.setLineColor(color);
@@ -103,6 +135,8 @@ public class EndWorld extends World
         ordersFailedLabel.setLineColor(color);
         totalCalculation.setLineColor(color);
         totalLabel.setLineColor(color);
+        recordLabel.setLineColor(color);
+        recordNum.setLineColor(color);
     }
     
     public void addContinueButton() {

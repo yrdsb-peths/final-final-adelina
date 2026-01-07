@@ -10,7 +10,7 @@ public class GameState
     public static boolean level2Unlocked = false;
     public static boolean level3Unlocked = false;
 
-    public static int level1HighScore = 0;
-    public static int level2HighScore = 0;
-    public static int level3HighScore = 0;
+    public static int level1RecordScore = 0;
+    public static int level2RecordScore = 0;
+    public static int level3RecordScore = 0;
 }
