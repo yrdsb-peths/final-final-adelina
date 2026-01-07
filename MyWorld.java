@@ -20,6 +20,9 @@ public class MyWorld extends World {
     public SimpleTimer newOrderTimer = new SimpleTimer();
     private int newOrderTime = 10000; //20 seconds 
     
+    private int level;
+    private int numOrderDelivered = 0;
+    private int numOrderFailed = 0;
     
     public MyWorld(int level)
     {    
@@ -46,6 +49,7 @@ public class MyWorld extends World {
         addObject(soupOrders[0],20+unitWidth, 90/2);
         newOrderTimer.mark();
         
+        this.level = level;
         if (level == 1) {
             prepareLevelOne();
         } else if (level == 2) {
@@ -60,6 +64,10 @@ public class MyWorld extends World {
         remainingGameTime -= 20; //act runs once in approx 20 millis
         if (remainingGameTime%1000 == 0) {
             updateCountDownLabel();
+        }
+        
+        if (remainingGameTime == 0) {
+            Greenfoot.setWorld(new EndWorld(level, numOrderDelivered, numOrderFailed));
         }
     }
     
@@ -306,5 +314,13 @@ public class MyWorld extends World {
     public void decreasePoints() {
         points -= unitOrderDecrease;
         pointLabel.setValue (points);
+    }
+    
+    public void increaseNumOrderDelivered() {
+        numOrderDelivered ++;
+    }
+    
+    public void increaseNumOrderFailed() {
+        numOrderFailed ++;
     }
 }

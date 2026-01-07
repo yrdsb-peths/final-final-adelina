@@ -26,13 +26,50 @@ public class EndWorld extends World
     Color blue = new Color (0, 71, 87);
     Label continueLabel;
     
-    Star star = new Star();
+    Star star;
+    
+    int totalScore;
+    int levelOneOneStarScore = 20;
+    int levelOneTwoStarScore = 30;
+    int levelOneThreeStarScore = 40;
+    
+    int levelTwoOneStarScore = 20;
+    int levelTwoTwoStarScore = 30;
+    int levelTwoThreeStarScore = 40;
+    
+    int levelThreeOneStarScore = 20;
+    int levelThreeTwoStarScore = 30;
+    int levelThreeThreeStarScore = 40;
+    
+    int level;
+    int numDelivered;
+    int numFailed;
     
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
         setBackground(endImage);
         
+        this.level = level;
+        totalScore = numDelivered*20-numFailed*10;
+        this.numDelivered = numDelivered;
+        this.numFailed = numFailed;
+        
+        addTexts();
+        setTextColor();
+        addContinueButton();
+        setStarImage();
+    }
+    
+    public void act() {
+        if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
+            GameState s = new GameState();
+            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
+            
+        }
+    }
+    
+    public void addTexts() {
         addObject(completeLabel, 8*60 + 20, 60+30);
         addObject(ordersDeliveredLabel, 6*60 + 63, 3*60 + 3);
         addObject(ordersFailedLabel, 6*60 + 50, 4*60);
@@ -45,9 +82,12 @@ public class EndWorld extends World
         addObject (ordersDeliveredCalculation, 9*60 + 20 + 30, 3*60 + 3);
         ordersFailedCalculation = new Label (numFailed + " x 10 = " + (numFailed*10), 20);
         addObject (ordersFailedCalculation, 9*60 + 20 + 30, 4*60);
-        totalCalculation = new Label (numDelivered*20-numFailed*10, 50);
-        addObject (totalCalculation, 9*60 + 20 + 30, 5*60+3);
         
+        totalCalculation = new Label (totalScore, 50);
+        addObject (totalCalculation, 9*60 + 20 + 30, 5*60+3);
+    }
+    
+    public void setTextColor() {
         ordersDeliveredCalculation.setFillColor(color);
         ordersFailedCalculation.setFillColor(color);
         levelLabel.setFillColor(color);
@@ -63,20 +103,51 @@ public class EndWorld extends World
         ordersFailedLabel.setLineColor(color);
         totalCalculation.setLineColor(color);
         totalLabel.setLineColor(color);
-        
+    }
+    
+    public void addContinueButton() {
         continueLabel = new Label ("continue", 35);
         continueButton = new Button (160, 60, blue);
         addObject(continueButton, 8*60 + 20, 8*60 + 20);
         addObject(continueLabel, 8*60 + 20, 8*60 + 20);
-        
-        addObject(star, 8*60 + 20, 6*60 + 20);
     }
     
-    public void act() {
-        if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
-            GameState s = new GameState();
-            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
-            
+    public void setStarImage() {
+        if (level == 1) {
+            if (totalScore < levelOneOneStarScore){
+                star = new Star (0);
+            } else if (totalScore >= levelOneOneStarScore && totalScore < levelOneTwoStarScore) {
+                star = new Star (1);
+            } else if (totalScore >= levelOneTwoStarScore && totalScore < levelOneThreeStarScore) {
+                star = new Star (2);
+            } else {
+                star = new Star (3);
+            }
         }
+        
+        if (level == 2) {
+            if (totalScore < levelTwoOneStarScore){
+                star = new Star (0);
+            } else if (totalScore >= levelTwoOneStarScore && totalScore < levelTwoTwoStarScore) {
+                star = new Star (1);
+            } else if (totalScore >= levelTwoTwoStarScore && totalScore < levelTwoThreeStarScore) {
+                star = new Star (2);
+            } else {
+                star = new Star (3);
+            }
+        }
+        
+        if (level == 3) {
+            if (totalScore < levelThreeOneStarScore){
+                star = new Star (0);
+            } else if (totalScore >= levelThreeOneStarScore && totalScore < levelThreeTwoStarScore) {
+                star = new Star (1);
+            } else if (totalScore >= levelThreeTwoStarScore && totalScore < levelThreeThreeStarScore) {
+                star = new Star (2);
+            } else {
+                star = new Star (3);
+            }
+        }
+        addObject(star, 8*60 + 20, 6*60 + 20);
     }
 }

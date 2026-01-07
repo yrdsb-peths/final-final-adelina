@@ -41,6 +41,7 @@ public class Order extends Actor
         if (orderTimer.millisElapsed() > orderTime) {
             MyWorld w = (MyWorld) getWorld();
             w.decreasePoints();
+            w.increaseNumOrderFailed();
             removeSelf();
         }
     }

@@ -12,8 +12,11 @@ public class Star extends Actor
     GreenfootImage oneStar = new GreenfootImage ("images/oneStar.PNG");
     GreenfootImage twoStar = new GreenfootImage ("images/twoStar.PNG");
     GreenfootImage threeStar = new GreenfootImage ("images/threeStar.PNG");
-    public Star() {
-        setImage (threeStar);
+    public Star(int starNum) {
+        if (starNum == 0 ) setImage (zeroStar);
+        else if (starNum == 1 ) setImage (oneStar);
+        else if (starNum == 2 ) setImage (twoStar);
+        else if (starNum == 3 ) setImage (threeStar);
     }
     
     public void act()
