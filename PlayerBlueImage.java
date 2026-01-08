@@ -8,12 +8,45 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerBlueImage extends PlayerImage
 {
-    /**
-     * Act - do whatever the PlayerBlueImage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
+    public PlayerBlueImage(PlayerController controller) {
+        //set the controller that this image will follow
+        this.controller = controller;
+        controller.setPlayerImage(this);
+        
+        rescaleAndSetImages(this.width, this.height);
+        
+        facingDirection = "front";
+        
+        setImage(FRONT);
+        animationTimer.mark();
+    }
+    
+    public void rescaleAndSetImages(int width, int height) {
+        FRONT = new GreenfootImage ("images/playerBlueFront.PNG");
+        BACK = new GreenfootImage ("images/playerBlueBack.PNG");
+        LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
+        RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
+        
+        FRONT.scale (width, height);
+        BACK.scale (width, height);
+        LEFT.scale (width, height);
+        RIGHT.scale (width, height);
+        
+        for (int i=0; i<2; i++) {
+            choppingPlayerFront[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
+            choppingPlayerFront[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerBack[i] = new GreenfootImage ("images/playerChoppingBack/playerBlueChoppingBack" + i + ".PNG");
+            choppingPlayerBack[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerLeft[i] = new GreenfootImage ("images/playerChoppingLeft/playerBlueChoppingLeft" + i + ".PNG");
+            choppingPlayerLeft[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerRight[i] = new GreenfootImage ("images/playerChoppingRight/playerBlueChoppingRight" + i + ".PNG");
+            choppingPlayerRight[i].scale(width, height);
+        }
     }
 }

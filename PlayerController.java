@@ -15,15 +15,32 @@ public class PlayerController extends SuperSmoothMover
     int width = 60;
     boolean isHoldingObject = false;
     private HoldableObject holdingObject = null;
+    PlayerImage playerImage;
     
-    public PlayerController () {
+    public String leftKey, rightKey, upKey, downKey;
+    public String actionKey, chopKey;
+    
+    public PlayerController (String left, String right, String up, String down,
+                        String action, String chop) {
         controller.scale(width,width);
         setImage (controller);
+        
+        leftKey = left;
+        rightKey = right;
+        upKey = up;
+        downKey = down;
+        actionKey = action;
+        chopKey = chop;
     }
     
     public void act()
     {
         controlPlayer();
+        if(holdingObject != null) holdingObject.moveWithPlayer(this);
+    }
+    
+    public void setPlayerImage(PlayerImage image) {
+        playerImage = image;
     }
 
     /**
@@ -35,26 +52,25 @@ public class PlayerController extends SuperSmoothMover
         int newX = getX();
         int newY = getY();
     
-        if (Greenfoot.isKeyDown("left"))  newX -= SPEED;
-        if (Greenfoot.isKeyDown("right")) newX += SPEED;
-        if (Greenfoot.isKeyDown("up"))    newY -= SPEED;
-        if (Greenfoot.isKeyDown("down"))  newY += SPEED;
+        if (Greenfoot.isKeyDown(leftKey))  newX -= SPEED;
+        if (Greenfoot.isKeyDown(rightKey)) newX += SPEED;
+        if (Greenfoot.isKeyDown(upKey))    newY -= SPEED;
+        if (Greenfoot.isKeyDown(downKey))  newY += SPEED;
         // Check BEFORE moving
         if (!willCollide(newX, newY)) {
             setLocation(newX, newY);
         }
         
-        if ("a".equals(Greenfoot.getKey())) {
+        if (actionKey.equals(Greenfoot.getKey())) {
             holdOrPlaceDownHoldableObject();
             checkIfAddFoodToPot();
             checkIfServeFoodToPlate();
             checkIfDeliverFood();
         }
         
-        MyWorld w = (MyWorld) getWorld();
-        if (Greenfoot.isKeyDown("w")) {
+        if (Greenfoot.isKeyDown(chopKey)) {
             if (choppingConditionSatisfied()){
-                w.playerImage.evokeChoppingAnimation();
+                playerImage.evokeChoppingAnimation();
                 Food cuttingFood = (Food)getSelectedCounter().getObjectOnTop();
                 cuttingFood.increaseCurrentCuttingTime();
                 if (cuttingFood.hasFinishedChopping()) updateFoodToChoppedVersion();
@@ -178,8 +194,7 @@ public class PlayerController extends SuperSmoothMover
         int numNearbyCounters = getNumNearbyCounters();
         if (numNearbyCounters == 0) return null;
     
-        MyWorld w = (MyWorld)getWorld();
-        String dir = w.playerImage.getFacingDirection();
+        String dir = playerImage.getFacingDirection();
     
         // 1. If only one, return whatever is there
         if (numNearbyCounters == 1) {
@@ -264,11 +279,11 @@ public class PlayerController extends SuperSmoothMover
                     FoodCounter selectedFoodCounter = (FoodCounter)selectedCounter;
                     
                     if (selectedFoodCounter.getType().equals("onion") ) {
-                        holdingObject = w.generateOnion();
+                        holdingObject = w.generateOnion(this);
                     } else if (selectedFoodCounter.getType().equals("tomato") ) {
-                        holdingObject = w.generateTomato();
+                        holdingObject = w.generateTomato(this);
                     } else if (selectedFoodCounter.getType().equals("mushroom") ) {
-                        holdingObject = w.generateMushroom();
+                        holdingObject = w.generateMushroom(this);
                     }
                     isHoldingObject = true;
                     selectedCounter.setObjectOnTop(null);
@@ -425,8 +440,7 @@ public class PlayerController extends SuperSmoothMover
      * returns true if player can chop
      */
     public boolean choppingConditionSatisfied() {
-        MyWorld w = (MyWorld)getWorld();
-        String dir = w.playerImage.getFacingDirection();
+        String dir = playerImage.getFacingDirection();
         Counter counterInFront = getCounterInFront(dir);
         
         if ( !(counterInFront instanceof CuttingCounter))return false;
@@ -442,8 +456,7 @@ public class PlayerController extends SuperSmoothMover
     }
     
     private void updateFoodToChoppedVersion() {
-        MyWorld w = (MyWorld)getWorld();
-        String dir = w.playerImage.getFacingDirection();
+        String dir = playerImage.getFacingDirection();
         Counter counterInFront = getCounterInFront(dir);
         Food foodOnTop = (Food) counterInFront.getObjectOnTop();
         

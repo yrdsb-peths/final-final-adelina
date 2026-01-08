@@ -5,8 +5,11 @@ public class MyWorld extends World {
     private int counterOffset = unitWidth/2;
     private GreenfootImage background = new GreenfootImage("images/background.PNG");
     
-    public PlayerController player = new PlayerController();
-    public PlayerImage playerImage = new PlayerImage();
+    public PlayerController playerBlue;
+    public PlayerImage playerBlueImage;
+    public PlayerController playerRed;
+    public PlayerImage playerRedImage;
+    
     public PlateCounter plateCounter = new PlateCounter();
     private Label pointLabel;
     private Label countDownLabel;
@@ -32,12 +35,25 @@ public class MyWorld extends World {
         setBackground (background);
         
         setPaintOrder(Label.class, Clock.class, Coin.class, SuperStatBar.class, HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
+        
+        
+        playerBlue = new PlayerController("left", "right", "up", "down",
+    "/", ".");
+        playerBlueImage = new PlayerBlueImage(playerBlue);
+        addObject(playerBlue,20+11*unitWidth+counterOffset,7*unitWidth + counterOffset);
+        addObject (playerBlueImage, 0, 0);
+        if (numPlayer == 2) {
+            playerRed = new PlayerController("a", "d", "w", "s",
+    "e", "q");
+            playerRedImage = new PlayerRedImage(playerRed);
+            addObject(playerRed,20+9*unitWidth+counterOffset,7*unitWidth + counterOffset);
+            addObject (playerRedImage, 0, 0);
+        }
+        
+        
+        //initiate point and countdown
         pointLabel = new Label(0, 60);
         countDownLabel = new Label("3:00", 60);
-        
-        addObject(player,20+11*unitWidth+counterOffset,7*unitWidth + counterOffset);
-        addObject (playerImage, 0, 0);
-        
         Coin coin = new Coin();
         addObject(coin, 20+unitWidth, 9*unitWidth - 20);
         addObject (pointLabel, 20+unitWidth, 9*unitWidth-10);
@@ -45,6 +61,7 @@ public class MyWorld extends World {
         addObject(clock, 20+15*unitWidth, 9*unitWidth-20);
         addObject(countDownLabel, 20+15*unitWidth, 9*unitWidth-10);
         
+        //initiate orders
         soupOrders[0] = new Order();
         addObject(soupOrders[0],20+unitWidth, 90/2);
         newOrderTimer.mark();
@@ -297,19 +314,19 @@ public class MyWorld extends World {
         addObject(counter11, 20+(6)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
     }
     
-    public Onion generateOnion() {
+    public Onion generateOnion(PlayerController player) {
         Onion onion = new Onion();
         addObject(onion, player.getX(), player.getY());
         onion.setIsBeingHeld (true);
         return onion;
     }
-    public Mushroom generateMushroom() {
+    public Mushroom generateMushroom(PlayerController player) {
         Mushroom mushroom = new Mushroom();
         addObject(mushroom, player.getX(), player.getY());
         mushroom.setIsBeingHeld (true);
         return mushroom;
     }
-    public Tomato generateTomato() {
+    public Tomato generateTomato(PlayerController player) {
         Tomato tomato = new Tomato();
         addObject(tomato, player.getX(), player.getY());
         tomato.setIsBeingHeld (true);

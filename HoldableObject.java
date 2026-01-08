@@ -15,12 +15,10 @@ public class HoldableObject extends Actor
     
     public void act()
     {
-        if (isBeingHeld) moveWithPlayer();
     }
     
-    public void moveWithPlayer() {
-        MyWorld world = (MyWorld) getWorld();
-        setLocation (world.player.getX(), world.player.getY());
+    public void moveWithPlayer(PlayerController player) {
+        setLocation (player.getX(), player.getY());
     }
     
     public void setIsBeingHeld(boolean isBeingHeld) {

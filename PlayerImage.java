@@ -8,37 +8,31 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerImage extends Actor
 {
-    private static final GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.PNG");
-    private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
-    private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
-    private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
-    private GreenfootImage[] choppingPlayerFront = new GreenfootImage[2];
-    private GreenfootImage[] choppingPlayerBack = new GreenfootImage[2];
-    private GreenfootImage[] choppingPlayerLeft = new GreenfootImage[2];
-    private GreenfootImage[] choppingPlayerRight = new GreenfootImage[2];
+    GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.PNG");
+    GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
+    GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
+    GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
+    GreenfootImage[] choppingPlayerFront = new GreenfootImage[2];
+    GreenfootImage[] choppingPlayerBack = new GreenfootImage[2];
+    GreenfootImage[] choppingPlayerLeft = new GreenfootImage[2];
+    GreenfootImage[] choppingPlayerRight = new GreenfootImage[2];
     
-    private String facingDirection;
+    String facingDirection;
     //image offset in the y direction in relation to the invisible player controller
     private int offSet = 20;
-    private int width = 85;
-    private int height = 135;
+    int width = 85;
+    int height = 135;
     private int animationGap = 100;
     
     SimpleTimer animationTimer = new SimpleTimer();
     int imageIndex = 0;
     
+    PlayerController controller;
+    
     public PlayerImage() {
-        rescaleAndSetImages (width, height);
-        facingDirection = "front";
-        
-        setImage(FRONT);
-        animationTimer.mark();
         
     }
-    /**
-     * Act - do whatever the PlayerImage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         // Add your action code here.
@@ -75,16 +69,16 @@ public class PlayerImage extends Actor
      * when moving to a direction, change to the corresponding image
      */
     public void changeDirection() {
-        if (Greenfoot.isKeyDown("left")) {
+        if (Greenfoot.isKeyDown(controller.leftKey)) {
             facingDirection = "left";
             setImage(LEFT);
-        } else if (Greenfoot.isKeyDown("right")) {
+        } else if (Greenfoot.isKeyDown(controller.rightKey)) {
             facingDirection = "right";
             setImage(RIGHT);
-        } else if (Greenfoot.isKeyDown("up")) {
+        } else if (Greenfoot.isKeyDown(controller.upKey)) {
             facingDirection = "back";
             setImage(BACK);
-        } else if (Greenfoot.isKeyDown("down")) {
+        } else if (Greenfoot.isKeyDown(controller.downKey)) {
             facingDirection = "front";
             setImage(FRONT);
         }
@@ -132,8 +126,7 @@ public class PlayerImage extends Actor
      * its upper half may overlap the counter image to appear to be closer to it
      */
     public void moveWithPlayerController () {
-        MyWorld world = (MyWorld) getWorld();
-        setLocation (world.player.getX(), world.player.getY()-offSet);
+        setLocation (controller.getX(), controller.getY()-offSet);
     }
     
     public String getFacingDirection() {

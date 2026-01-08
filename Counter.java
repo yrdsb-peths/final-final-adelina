@@ -21,9 +21,15 @@ public class Counter extends Actor
     //when is being selected change image to the first parameter
     public void checkIfSelected (GreenfootImage selectedImage, GreenfootImage normalImage){
         MyWorld world = (MyWorld)getWorld();
-        Counter selected = world.player.getSelectedCounter();
-    
-        if (this == selected){
+        Counter playerBlueSelected = world.playerBlue.getSelectedCounter();
+        Counter playerRedSelected = null;
+        if (world.playerRed != null) {
+             playerRedSelected = world.playerRed.getSelectedCounter();
+        }
+        
+        
+        // if one of the players has selected the counter, change image to selected
+        if (this == playerBlueSelected || this == playerRedSelected){
             setImage(selectedImage);
             isSelected = true;
         } else {
