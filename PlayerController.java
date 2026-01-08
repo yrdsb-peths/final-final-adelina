@@ -19,6 +19,7 @@ public class PlayerController extends SuperSmoothMover
     
     public String leftKey, rightKey, upKey, downKey;
     public String actionKey, chopKey;
+    private boolean actionKeyPreviouslyDown = false;
     
     public PlayerController (String left, String right, String up, String down,
                         String action, String chop) {
@@ -61,12 +62,14 @@ public class PlayerController extends SuperSmoothMover
             setLocation(newX, newY);
         }
         
-        if (actionKey.equals(Greenfoot.getKey())) {
+        boolean actionKeyDown = Greenfoot.isKeyDown(actionKey);
+        if (actionKeyDown && !actionKeyPreviouslyDown) {
             holdOrPlaceDownHoldableObject();
             checkIfAddFoodToPot();
             checkIfServeFoodToPlate();
             checkIfDeliverFood();
         }
+        actionKeyPreviouslyDown = actionKeyDown;
         
         if (Greenfoot.isKeyDown(chopKey)) {
             if (choppingConditionSatisfied()){
