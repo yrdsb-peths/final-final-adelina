@@ -52,13 +52,13 @@ public class LevelWorld extends World
     public void act() {
         if (Greenfoot.mouseClicked(level1)) {
             bgm.stop();
-            Greenfoot.setWorld (new MyWorld(1));
+            Greenfoot.setWorld (new SelectNumPlayer(1));
         } else if (Greenfoot.mouseClicked(level2) && level2.isUnlocked()) {
             bgm.stop();
-            Greenfoot.setWorld (new MyWorld(2));
+            Greenfoot.setWorld (new SelectNumPlayer(2));
         } else if (Greenfoot.mouseClicked(level3) && level3.isUnlocked()) {
             bgm.stop();
-            Greenfoot.setWorld (new MyWorld(3));
+            Greenfoot.setWorld (new SelectNumPlayer(3));
         } 
     }
     

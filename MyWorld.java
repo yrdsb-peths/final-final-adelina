@@ -24,7 +24,7 @@ public class MyWorld extends World {
     private int numOrderDelivered = 0;
     private int numOrderFailed = 0;
     
-    public MyWorld(int level)
+    public MyWorld(int level, int numPlayer)
     {    
         super(1000, 600, 1); 
         

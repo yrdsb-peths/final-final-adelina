@@ -80,17 +80,17 @@ public class EndWorld extends World
         if (level == 2 && totalScore >= levelTwoOneStarScore) GameState.level3Unlocked = true;
         
         //if player total score is higher than record score, update record
-        if (level == 1 && totalScore > GameState.level1RecordScore){
-            GameState.level1RecordScore = totalScore;
-            recordScore = GameState.level1RecordScore;
+        if (level == 1 && totalScore > GameState.levelRecordScore[1]){
+            GameState.levelRecordScore[1] = totalScore;
+            recordScore = GameState.levelRecordScore[1];
         }
-        if (level == 2 && totalScore > GameState.level2RecordScore){
-            GameState.level2RecordScore = totalScore;
-            GameState.level2RecordScore = totalScore;
+        if (level == 2 && totalScore > GameState.levelRecordScore[2]){
+            GameState.levelRecordScore[2] = totalScore;
+            GameState.levelRecordScore[2] = totalScore;
         }
-        if (level == 3 && totalScore > GameState.level3RecordScore){
-            GameState.level3RecordScore = totalScore;
-            GameState.level3RecordScore = totalScore;
+        if (level == 3 && totalScore > GameState.levelRecordScore[3]){
+            GameState.levelRecordScore[3] = totalScore;
+            GameState.levelRecordScore[3] = totalScore;
         }
     }
     
