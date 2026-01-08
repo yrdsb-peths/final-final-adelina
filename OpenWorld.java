@@ -13,6 +13,9 @@ public class OpenWorld extends World
     Button startButton, instructionButton;
     Label startLabel, instructionLabel;
     
+    // Sounds
+    private GreenfootSound bgm;
+    
     public OpenWorld()
     {    
         super(1000, 600, 1); 
@@ -28,14 +31,40 @@ public class OpenWorld extends World
         startButton = new Button(160, 60, color);
         addObject(startLabel, 890, 550);
         addObject(startButton, 890, 550);
+        
+        bgm = new GreenfootSound("openAndLevel.mp3");
+        
+        resetGameState ();
     }
     
     public void act(){
         if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
             Greenfoot.setWorld (new InstructionWorld());
         } else if (Greenfoot.mouseClicked(startLabel) || Greenfoot.mouseClicked(startButton)) {
-            GameState s = new GameState();
-            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
+            Greenfoot.setWorld (new LevelWorld(bgm));
         }
+    }
+    
+    /**
+     * Called when the world starts (e.g., when returning from pause).
+     */
+    public void started() {
+        if (bgm != null) {
+            bgm.playLoop();
+        }
+    }
+
+    /**
+     * Called when the world is stopped (e.g., when paused or leaving world).
+     */
+    public void stopped() {
+        if (bgm != null) {
+            bgm.pause();
+        }
+    }
+    
+    private void resetGameState (){
+        GameState.level2Unlocked = false;
+        GameState.level3Unlocked = false;
     }
 }

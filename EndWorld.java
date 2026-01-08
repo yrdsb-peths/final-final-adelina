@@ -21,13 +21,12 @@ public class EndWorld extends World
     Label ordersFailedCalculation;
     Label totalCalculation;
     Label recordNum;
-    
-    Color color = new Color (100, 100, 100);
-    
-    Button continueButton;
-    Color blue = new Color (0, 71, 87);
     Label continueLabel;
     
+    Color color = new Color (100, 100, 100);
+    Color blue = new Color (0, 71, 87);
+    
+    Button continueButton;
     Star star;
     
     int totalScore;
