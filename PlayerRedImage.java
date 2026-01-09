@@ -33,19 +33,19 @@ public class PlayerRedImage extends PlayerImage
         RIGHT.scale (width, height);
         
         for (int i=0; i<2; i++) {
-            choppingPlayerFront[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
+            choppingPlayerFront[i] = new GreenfootImage ("images/playerRedChoppingFront/playerRedChoppingFront" + i + ".PNG");
             choppingPlayerFront[i].scale(width, height);
         }
         for (int i=0; i<2; i++) {
-            choppingPlayerBack[i] = new GreenfootImage ("images/playerChoppingBack/playerBlueChoppingBack" + i + ".PNG");
+            choppingPlayerBack[i] = new GreenfootImage ("images/playerRedChoppingBack/playerRedChoppingBack" + i + ".PNG");
             choppingPlayerBack[i].scale(width, height);
         }
         for (int i=0; i<2; i++) {
-            choppingPlayerLeft[i] = new GreenfootImage ("images/playerChoppingLeft/playerBlueChoppingLeft" + i + ".PNG");
+            choppingPlayerLeft[i] = new GreenfootImage ("images/playerRedChoppingLeft/playerRedChoppingLeft" + i + ".PNG");
             choppingPlayerLeft[i].scale(width, height);
         }
         for (int i=0; i<2; i++) {
-            choppingPlayerRight[i] = new GreenfootImage ("images/playerChoppingRight/playerBlueChoppingRight" + i + ".PNG");
+            choppingPlayerRight[i] = new GreenfootImage ("images/playerRedChoppingRight/playerRedChoppingRight" + i + ".PNG");
             choppingPlayerRight[i].scale(width, height);
         }
     }
