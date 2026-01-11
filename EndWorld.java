@@ -47,6 +47,9 @@ public class EndWorld extends World
     int numFailed;
     int recordScore;
     
+    
+    private GreenfootSound endSound = new GreenfootSound ("sounds/levelVictorySound.mp3");
+    
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
@@ -63,6 +66,7 @@ public class EndWorld extends World
         addContinueButton();
         setStarImage();
         
+        endSound.play();
     }
     
     public void act() {

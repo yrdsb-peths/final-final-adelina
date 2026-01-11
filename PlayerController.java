@@ -21,6 +21,11 @@ public class PlayerController extends SuperSmoothMover
     public String actionKey, chopKey;
     private boolean actionKeyPreviouslyDown = false;
     
+    private GreenfootSound deliverySuccessSound = new GreenfootSound ("sounds/deliverySuccessSound.mp3");
+    private GreenfootSound failedSound = new GreenfootSound ("sounds/failedSound.mp3");
+    private GreenfootSound placeFoodSound = new GreenfootSound ("sounds/placeFoodSound.mp3");
+    GreenfootSound choppingSound = new GreenfootSound("choppingSound.mp3");
+    
     public PlayerController (String left, String right, String up, String down,
                         String action, String chop) {
         controller.scale(width,width);
@@ -74,6 +79,7 @@ public class PlayerController extends SuperSmoothMover
         if (Greenfoot.isKeyDown(chopKey)) {
             if (choppingConditionSatisfied()){
                 playerImage.evokeChoppingAnimation();
+                choppingSound.play();
                 Food cuttingFood = (Food)getSelectedCounter().getObjectOnTop();
                 cuttingFood.increaseCurrentCuttingTime();
                 if (cuttingFood.hasFinishedChopping()) updateFoodToChoppedVersion();
@@ -110,7 +116,9 @@ public class PlayerController extends SuperSmoothMover
             w.plateCounter.increaseNumPlateOnTop();
             w.increasePoints();
             w.increaseNumOrderDelivered();
+            deliverySuccessSound.play();
         } else {
+            failedSound.play();
             return;
         }
     }
@@ -148,6 +156,7 @@ public class PlayerController extends SuperSmoothMover
             holdingPlate.setImageToMushroomSoupPlate(); 
         }
         
+        placeFoodSound.play();
         selectedPot.setToEmptyPotStatus();
         holdingPlate.setIsEmpty(false);
     }
@@ -255,6 +264,7 @@ public class PlayerController extends SuperSmoothMover
                 holdingObject.setIsBeingHeld(false);
                 holdingObject = null;
                 isHoldingObject = false;
+                choppingSound.play();
             } else {
                 /*
                  * take object up if
@@ -290,6 +300,7 @@ public class PlayerController extends SuperSmoothMover
                     }
                     isHoldingObject = true;
                     selectedCounter.setObjectOnTop(null);
+                    choppingSound.play();
                 }
             }
         }
@@ -321,13 +332,13 @@ public class PlayerController extends SuperSmoothMover
         
         if (selectedPot.getNumFoodInside() == 0) {
             changeToOneFoodSoup();
-            
+            placeFoodSound.play();
         } else if (selectedPot.getNumFoodInside() == 1) {
             changeToTwoFoodSoup();
-            
+            placeFoodSound.play();
         } else if (selectedPot.getNumFoodInside() == 2) {
             changeToThreeFoodSoup();
-            
+            placeFoodSound.play();
         }
 
     }

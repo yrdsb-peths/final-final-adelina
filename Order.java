@@ -24,6 +24,8 @@ public class Order extends Actor
     
     private String type;
     
+    private GreenfootSound failedSound = new GreenfootSound ("sounds/failedSound.mp3");
+    
     public Order() {
         tomatoSoupOrder.scale(width, height);
         mushroomSoupOrder.scale(width, height);
@@ -42,6 +44,7 @@ public class Order extends Actor
             MyWorld w = (MyWorld) getWorld();
             w.decreasePoints();
             w.increaseNumOrderFailed();
+            failedSound.play();
             removeSelf();
         }
     }

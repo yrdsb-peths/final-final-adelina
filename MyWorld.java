@@ -27,9 +27,15 @@ public class MyWorld extends World {
     private int numOrderDelivered = 0;
     private int numOrderFailed = 0;
     
+    
+    private GreenfootSound bgm;
+    
     public MyWorld(int level, int numPlayer)
     {    
         super(1000, 600, 1); 
+        
+        bgm = new GreenfootSound ("gameSound.mp3");
+        bgm.playLoop();
         
         background.scale (1000, 600);
         setBackground (background);
@@ -37,14 +43,12 @@ public class MyWorld extends World {
         setPaintOrder(Label.class, Clock.class, Coin.class, SuperStatBar.class, HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
         
         
-        playerBlue = new PlayerController("left", "right", "up", "down",
-    "/", ".");
+        playerBlue = new PlayerController("left", "right", "up", "down", "/", ".");
         playerBlueImage = new PlayerBlueImage(playerBlue);
         addObject(playerBlue,20+11*unitWidth+counterOffset,7*unitWidth + counterOffset);
         addObject (playerBlueImage, 0, 0);
         if (numPlayer == 2) {
-            playerRed = new PlayerController("a", "d", "w", "s",
-    "e", "q");
+            playerRed = new PlayerController("a", "d", "w", "s", "e", "q");
             playerRedImage = new PlayerRedImage(playerRed);
             addObject(playerRed,20+9*unitWidth+counterOffset,7*unitWidth + counterOffset);
             addObject (playerRedImage, 0, 0);
@@ -84,6 +88,7 @@ public class MyWorld extends World {
         }
         
         if (remainingGameTime == 0) {
+            bgm.stop();
             Greenfoot.setWorld(new EndWorld(level, numOrderDelivered, numOrderFailed));
         }
     }
@@ -349,4 +354,5 @@ public class MyWorld extends World {
     public void increaseNumOrderFailed() {
         numOrderFailed ++;
     }
+
 }

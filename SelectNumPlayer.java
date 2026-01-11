@@ -16,8 +16,8 @@ public class SelectNumPlayer extends World
     Label recordLabel = new Label ("Record", 30);
     Label recordNum;
     
-    Label continueLabel, returnLabel, onePlayerLabel, twoPlayerLabel;
-    Button continueButton, returnButton, onePlayerButton, twoPlayerButton;
+    Label returnLabel, onePlayerLabel, twoPlayerLabel;
+    Button returnButton, onePlayerButton, twoPlayerButton;
     
     Color white = new Color (255, 255, 255);
     Color blue = new Color (0, 71, 87);
@@ -53,23 +53,18 @@ public class SelectNumPlayer extends World
         recordNum = new Label (GameState.levelRecordScore[level], 30);
         addObject (recordNum, 9*60 + 20 + 30, 3*60 + 30);
         
-        continueLabel = new Label ("continue", 35);
-        continueButton = new Button(240, 60, blue);
-        addObject(continueButton, 500, 8*60 + 30);
-        addObject(continueLabel, 500, 8*60 + 30);
-        
         returnLabel = new Label ("back", 35);
         returnButton = new Button(240, 60, blue);
-        addObject(returnButton,500 , 6*60 + 30);
-        addObject(returnLabel, 500, 6*60 + 30);
+        addObject(returnButton,500 , 7*60 + 30);
+        addObject(returnLabel, 500, 7*60 + 30);
     
-        onePlayerLabel = new Label ("choose", 35);
-        onePlayerButton = new Button(120, 30, white);
+        onePlayerLabel = new Label ("one player", 25);
+        onePlayerButton = new Button(160, 30, white);
         addObject(onePlayerButton, 25 + 2*60 + 30, 7*60 + 30);
         addObject(onePlayerLabel, 25 + 2*60 + 30, 7*60 + 30);
         
-        twoPlayerLabel = new Label ("choose", 35);
-        twoPlayerButton = new Button(120, 30, white);
+        twoPlayerLabel = new Label ("two players", 25);
+        twoPlayerButton = new Button(160, 30, white);
         addObject(twoPlayerButton, 1000 - (25 + 2*60 + 30), 7*60 + 30);
         addObject(twoPlayerLabel, 1000 - (25 + 2*60 + 30), 7*60 + 30);
     }

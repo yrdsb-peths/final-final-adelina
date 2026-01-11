@@ -66,7 +66,4 @@ public class LevelWorld extends World
         bgm.playLoop();
     }
 
-    public void stopped () {
-        bgm.pause();
-    }
 }
