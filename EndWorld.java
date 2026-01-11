@@ -66,6 +66,7 @@ public class EndWorld extends World
         addContinueButton();
         setStarImage();
         
+        endSound.setVolume(60);
         endSound.play();
     }
     

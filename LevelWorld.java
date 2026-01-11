@@ -47,6 +47,7 @@ public class LevelWorld extends World
         addObject(levels, 500, 90);
         
         bgm = new GreenfootSound("openAndLevel.mp3");
+        bgm.playLoop();
     }
     
     public void act() {
@@ -62,8 +63,5 @@ public class LevelWorld extends World
         } 
     }
     
-    public void started () {
-        bgm.playLoop();
-    }
 
 }

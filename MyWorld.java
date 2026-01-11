@@ -35,6 +35,7 @@ public class MyWorld extends World {
         super(1000, 600, 1); 
         
         bgm = new GreenfootSound ("gameSound.mp3");
+        bgm.setVolume (60);
         bgm.playLoop();
         
         background.scale (1000, 600);
