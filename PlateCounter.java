@@ -23,8 +23,8 @@ public class PlateCounter extends Counter
     
     public void act()
     {
-        checkIfSelected(selectedPlateCounter, plateCounter);
-        
+        if (isSelected()) setImage (selectedPlateCounter);
+        else setImage (plateCounter);
     }
     
     /**

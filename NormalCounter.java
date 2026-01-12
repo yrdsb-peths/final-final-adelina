@@ -21,7 +21,7 @@ public class NormalCounter extends Counter
     public void act()
     {
         // check if being selected, if so, change image to selectedNormalCounter
-        checkIfSelected (selectedNormalCounter, normalCounter);
-        
+        if (isSelected()) setImage (selectedNormalCounter);
+        else setImage (normalCounter);
     }
 }

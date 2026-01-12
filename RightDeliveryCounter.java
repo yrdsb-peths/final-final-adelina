@@ -9,19 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class RightDeliveryCounter extends DeliveryCounter
 {
     public RightDeliveryCounter() {
-        deliveryCounter.scale (width, width);
-        selectedDeliveryCounter.scale (width, width);
+        super();
         
-        deliveryCounter.rotate (-90);
-        selectedDeliveryCounter.rotate (-90);
+        for (int i=0; i<4; i++) {
+            deliveryCounter[i].rotate (-90);
+            selectedDeliveryCounter[i].rotate (-90);
+        }
         
-        setImage (deliveryCounter);
+        setImage (deliveryCounter[0]);
         
-        facingDirection = "right";
     }
     
-    public void act()
-    {
-        checkIfSelected(selectedDeliveryCounter, deliveryCounter);
-    }
 }

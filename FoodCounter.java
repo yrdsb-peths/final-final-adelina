@@ -46,11 +46,14 @@ public class FoodCounter extends Counter
     {
         // Add your action code here.
         if (type.equals ("mushroom")) {
-            checkIfSelected (selectedMushroomCounter, mushroomCounter);
+            if (isSelected()) setImage (selectedMushroomCounter);
+            else setImage (mushroomCounter);
         } else if (type.equals ("tomato")) {
-            checkIfSelected (selectedTomatoCounter, tomatoCounter);
+            if (isSelected()) setImage (selectedTomatoCounter);
+            else setImage (tomatoCounter);
         } else if (type.equals ("onion")) {
-            checkIfSelected (selectedOnionCounter, onionCounter);
+            if (isSelected()) setImage (selectedOnionCounter);
+            else setImage (onionCounter);
         }
     }
     

@@ -22,8 +22,8 @@ public class StoveCounter extends Counter
     
     public void act()
     {
-        checkIfSelected(selectedStoveCounter, stoveCounter);
-        
+        if (isSelected()) setImage (selectedStoveCounter);
+        else setImage (stoveCounter);
     }
     protected void addedToWorld(World w)
     {

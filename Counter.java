@@ -19,7 +19,7 @@ public class Counter extends Actor
     
     //a super class for its subclasses
     //when is being selected change image to the first parameter
-    public void checkIfSelected (GreenfootImage selectedImage, GreenfootImage normalImage){
+    public boolean isSelected (){
         MyWorld world = (MyWorld)getWorld();
         Counter playerBlueSelected = world.playerBlue.getSelectedCounter();
         Counter playerRedSelected = null;
@@ -27,9 +27,13 @@ public class Counter extends Actor
              playerRedSelected = world.playerRed.getSelectedCounter();
         }
         
+        return this == playerBlueSelected || this == playerRedSelected;
         
+    }
+    
+    public void changeToSelectedImage(GreenfootImage selectedImage, GreenfootImage normalImage) {
         // if one of the players has selected the counter, change image to selected
-        if (this == playerBlueSelected || this == playerRedSelected){
+        if (isSelected()){
             setImage(selectedImage);
             isSelected = true;
         } else {
