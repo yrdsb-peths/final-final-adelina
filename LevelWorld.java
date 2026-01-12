@@ -12,6 +12,12 @@ public class LevelWorld extends World
     LevelButton level1, level2, level3 ;
     
     private GreenfootSound bgm;
+    
+    Button instructionButton;
+    Label instructionLabel;
+    
+    Color color = new Color (0, 71, 87);
+    
     public LevelWorld (GreenfootSound bgm){
         super(1000, 600, 1); 
         setBackground (background);
@@ -26,6 +32,11 @@ public class LevelWorld extends World
         
         Label levels = new Label ("LEVELS", 100);
         addObject(levels, 500, 90);
+        
+        instructionLabel = new Label ("HELP", 35);
+        instructionButton = new Button(160, 60, color);
+        addObject(instructionButton, 110, 550);
+        addObject(instructionLabel, 110, 550);
         
         this.bgm = bgm;
     }
@@ -46,6 +57,11 @@ public class LevelWorld extends World
         Label levels = new Label ("LEVELS", 100);
         addObject(levels, 500, 90);
         
+        instructionLabel = new Label ("HELP", 35);
+        instructionButton = new Button(160, 60, color);
+        addObject(instructionButton, 110, 550);
+        addObject(instructionLabel, 110, 550);
+        
         bgm = new GreenfootSound("openAndLevel.mp3");
         bgm.playLoop();
     }
@@ -60,8 +76,8 @@ public class LevelWorld extends World
         } else if (Greenfoot.mouseClicked(level3) && level3.isUnlocked()) {
             bgm.stop();
             Greenfoot.setWorld (new SelectNumPlayer(3));
+        } else if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
+            Greenfoot.setWorld (new InstructionWorld());
         } 
     }
-    
-
 }
