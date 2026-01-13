@@ -15,6 +15,7 @@ public class OpenWorld extends World
     
     // Sounds
     private GreenfootSound bgm;
+    private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
     
     public OpenWorld()
     {    
@@ -34,14 +35,18 @@ public class OpenWorld extends World
         
         bgm = new GreenfootSound("openAndLevel.mp3");
         bgm.playLoop();
+        click.setVolume(40);
         
         resetGameState ();
+
     }
     
     public void act(){
         if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
+            click.play();
             Greenfoot.setWorld (new InstructionWorld(bgm));
         } else if (Greenfoot.mouseClicked(startLabel) || Greenfoot.mouseClicked(startButton)) {
+            click.play();
             Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked,bgm));
         }
     }

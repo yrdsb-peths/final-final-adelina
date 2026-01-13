@@ -21,6 +21,8 @@ public class SelectNumPlayer extends World
     
     Color white = new Color (255, 255, 255);
     Color blue = new Color (0, 71, 87);
+    
+    private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
         
     public SelectNumPlayer(int level)
     {    
@@ -30,18 +32,20 @@ public class SelectNumPlayer extends World
         this.level = level;
         
         setUpLabelAndButton();
+        click.setVolume(40);
         
     }
     
     public void act() {
         if (Greenfoot.mouseClicked(returnLabel) || Greenfoot.mouseClicked(returnButton)) {
             Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked));
-            
+            click.play();
         } else if (Greenfoot.mouseClicked(onePlayerLabel) || Greenfoot.mouseClicked(onePlayerButton)) {
             Greenfoot.setWorld (new MyWorld(level, 1));
-            
+            click.play();
         } else if (Greenfoot.mouseClicked(twoPlayerLabel) || Greenfoot.mouseClicked(twoPlayerButton)) {
             Greenfoot.setWorld (new MyWorld(level, 2));
+            click.play();
         } 
     }
     

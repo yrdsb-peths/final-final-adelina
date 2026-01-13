@@ -49,7 +49,8 @@ public class EndWorld extends World
     
     
     private GreenfootSound endSound = new GreenfootSound ("sounds/levelVictorySound.mp3");
-    
+    private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
+
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
@@ -68,11 +69,13 @@ public class EndWorld extends World
         
         endSound.setVolume(60);
         endSound.play();
+        click.setVolume(40);
     }
     
     public void act() {
         //if clicks on the continue button, go to level world
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
+            click.play();
             Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked));
         }
     }
