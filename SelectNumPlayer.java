@@ -50,7 +50,7 @@ public class SelectNumPlayer extends World
         addObject (levelLabel, 500, 60+30);
         
         addObject (recordLabel,7*60+15,3*60 + 30);
-        recordNum = new Label (GameState.levelRecordScore[level], 30);
+        recordNum = new Label (GameState.levelRecordScore[level-1], 30);
         addObject (recordNum, 9*60 + 20 + 30, 3*60 + 30);
         
         returnLabel = new Label ("back", 35);
