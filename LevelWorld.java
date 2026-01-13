@@ -18,29 +18,6 @@ public class LevelWorld extends World
     
     Color color = new Color (0, 71, 87);
     
-    public LevelWorld (GreenfootSound bgm){
-        super(1000, 600, 1); 
-        setBackground (background);
-        
-        level1 = new LevelButton (1, GameState.level1Unlocked);
-        level2 = new LevelButton (2, GameState.level2Unlocked);
-        level3 = new LevelButton (3, GameState.level3Unlocked);
-        
-        addObject (level1,235, 300);
-        addObject (level2,500, 300);
-        addObject (level3,765, 300);
-        
-        Label levels = new Label ("LEVELS", 100);
-        addObject(levels, 500, 90);
-        
-        instructionLabel = new Label ("HELP", 35);
-        instructionButton = new Button(160, 60, color);
-        addObject(instructionButton, 110, 550);
-        addObject(instructionLabel, 110, 550);
-        
-        this.bgm = bgm;
-    }
-    
     public LevelWorld(boolean level1Unlocked, boolean level2Unlocked, boolean level3Unlocked)
     {    
         super(1000, 600, 1); 
@@ -64,6 +41,31 @@ public class LevelWorld extends World
         
         bgm = new GreenfootSound("openAndLevel.mp3");
         bgm.playLoop();
+        
+    }
+    
+    public LevelWorld(boolean level1Unlocked, boolean level2Unlocked, boolean level3Unlocked, GreenfootSound bgm)
+    {    
+        super(1000, 600, 1); 
+        setBackground (background);
+        
+        level1 = new LevelButton (1, level1Unlocked);
+        level2 = new LevelButton (2, level2Unlocked);
+        level3 = new LevelButton (3, level3Unlocked);
+        
+        addObject (level1,235, 300);
+        addObject (level2,500, 300);
+        addObject (level3,765, 300);
+        
+        Label levels = new Label ("LEVELS", 100);
+        addObject(levels, 500, 90);
+        
+        instructionLabel = new Label ("HELP", 35);
+        instructionButton = new Button(160, 60, color);
+        addObject(instructionButton, 110, 550);
+        addObject(instructionLabel, 110, 550);
+        
+        this.bgm = bgm;
     }
     
     public void act() {
@@ -77,7 +79,7 @@ public class LevelWorld extends World
             bgm.stop();
             Greenfoot.setWorld (new SelectNumPlayer(3));
         } else if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
-            Greenfoot.setWorld (new InstructionWorld());
+            Greenfoot.setWorld (new InstructionWorld(bgm));
         } 
     }
 }

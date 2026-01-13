@@ -13,8 +13,9 @@ public class InstructionWorld extends World
     Color color = new Color (0, 71, 87);
     Label continueLabel;
     
+    private GreenfootSound bgm;
     
-    public InstructionWorld()
+    public InstructionWorld(GreenfootSound bgm)
     {    
         super(1000, 600, 1); 
         setBackground(instruction);
@@ -24,12 +25,14 @@ public class InstructionWorld extends World
         continueButton = new Button (160, 60, color);
         addObject(continueLabel, 890, 550);
         addObject(continueButton, 890, 550);
+        
+        this.bgm = bgm;
     }
     
     public void act() {
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
             GameState s = new GameState();
-            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked));
+            Greenfoot.setWorld (new LevelWorld(s.level1Unlocked, s.level2Unlocked, s.level3Unlocked,bgm));
             
         }
     }

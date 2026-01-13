@@ -21,7 +21,7 @@ public class SelectNumPlayer extends World
     
     Color white = new Color (255, 255, 255);
     Color blue = new Color (0, 71, 87);
-    
+        
     public SelectNumPlayer(int level)
     {    
         super(1000, 600, 1); 
