@@ -13,7 +13,7 @@ public class MyWorld extends World {
     public PlateCounter plateCounter = new PlateCounter();
     private Label pointLabel;
     private Label countDownLabel;
-    private int remainingGameTime = 180000;//3 min
+    private int remainingGameTime = 120000;//3 min
     private int points = 0;
     
     public Order[] soupOrders = new Order[5];
@@ -51,14 +51,14 @@ public class MyWorld extends World {
         if (numPlayer == 2) {
             playerRed = new PlayerController("a", "d", "w", "s", "e", "q");
             playerRedImage = new PlayerRedImage(playerRed);
-            addObject(playerRed,20+9*unitWidth+counterOffset,7*unitWidth + counterOffset);
+            addObject(playerRed,20+5*unitWidth+counterOffset,7*unitWidth + counterOffset);
             addObject (playerRedImage, 0, 0);
         }
         
         
         //initiate point and countdown
         pointLabel = new Label(0, 60);
-        countDownLabel = new Label("3:00", 60);
+        countDownLabel = new Label("2:00", 60);
         Coin coin = new Coin();
         addObject(coin, 20+unitWidth, 9*unitWidth - 20);
         addObject (pointLabel, 20+unitWidth, 9*unitWidth-10);
@@ -198,7 +198,7 @@ public class MyWorld extends World {
         addObject(counter11, 20+(6)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
     }
     
-    private void prepareLevelTwo() {
+    private void prepareLevelThree() {
         Counter[] counterRow1 = new Counter[5];
         for (int i=0; i<counterRow1.length; i++) {
             if (i==0 || i==2){
@@ -256,68 +256,70 @@ public class MyWorld extends World {
         counterColumn1[3].setObjectOnTop(plate3);
     }
     
-    private void prepareLevelThree() {
-        NormalCounter[] counter1 = new NormalCounter[3];
-        for (int i=0; i<3; i++) {
-            counter1[i] = new NormalCounter();
-            addObject(counter1[i],20+(i+1)*unitWidth + counterOffset,2*unitWidth+counterOffset);
+    private void prepareLevelTwo() {
+        Counter[] counterRow11 = new Counter[6];
+        for (int i=0; i<counterRow11.length; i++) {
+            if (i==2 || i==4){
+                counterRow11[i] = new StoveCounter();
+            } else {
+                counterRow11[i] = new NormalCounter();
+            }
+            
+            addObject(counterRow11[i], 20 + counterOffset + (1+i)*unitWidth, counterOffset + 2*unitWidth);
         }
         
-        FoodCounter counter2 = new FoodCounter("onion");
-        addObject(counter2,20+4*unitWidth + counterOffset,2*unitWidth+counterOffset);
-        
-        FoodCounter counter3 = new FoodCounter ("tomato");
-        addObject(counter3,20+5*unitWidth + counterOffset,2*unitWidth+counterOffset);
-        
-        FoodCounter counter4 = new FoodCounter ("mushroom");
-        addObject(counter4,20+6*unitWidth + counterOffset,2*unitWidth+counterOffset);
-        
-        NormalCounter[] counter5 = new NormalCounter[2];
-        for (int i=0; i<2; i++) {
-            counter5[i] = new NormalCounter();
-            addObject(counter5[i],20+(7+i)*unitWidth + counterOffset,2*unitWidth+counterOffset);
+        Counter[] counterRow12 = new Counter[5];
+        for (int i=0; i<counterRow12.length; i++) {
+            counterRow12[i] = new NormalCounter();
+            addObject(counterRow12[i], 20 + counterOffset + (9+i)*unitWidth, counterOffset + 2*unitWidth);
         }
         
-        StoveCounter counter6 = new StoveCounter();
-        addObject(counter6,20+9*unitWidth + counterOffset,2*unitWidth+counterOffset);
-        
-        StoveCounter counter7 = new StoveCounter();
-        addObject(counter7,20+10*unitWidth + counterOffset,2*unitWidth+counterOffset);
-        
-        NormalCounter[] counter8 = new NormalCounter[3];
-        for (int i=0; i<3; i++) {
-            counter8[i] = new NormalCounter();
-            addObject(counter8[i],20+(11+i)*unitWidth + counterOffset,2*unitWidth+counterOffset);
+        Counter[] counterRow21 = new Counter[6];
+        for (int i=0; i<counterRow21.length; i++) {
+            if (i==2 || i==4){
+                counterRow21[i] = new CuttingCounter();
+            } else {
+                counterRow21[i] = new NormalCounter();
+            }
+            addObject(counterRow21[i], 20 + counterOffset + (1+i)*unitWidth, counterOffset + 8*unitWidth);
         }
-        Plate plate1 = new Plate();
-        addObject(plate1, 20+12*unitWidth + counterOffset, 2*unitWidth+counterOffset);
-        counter8[1].setObjectOnTop (plate1);
         
-        //delivery counter
-        NormalCounter counter12 = new NormalCounter();
-        addObject (counter12, 20+(13)*unitWidth + counterOffset,3*unitWidth+counterOffset);
+        Counter[] counterRow22 = new Counter[5];
+        for (int i=0; i<counterRow22.length; i++) {
+            if (i==1){
+                counterRow22[i] = new FoodCounter("mushroom");
+            } else if (i == 2) {
+                counterRow22[i] = new FoodCounter("tomato");
+            } else if (i == 3) {
+                counterRow22[i] = new FoodCounter("onion");
+            } else {
+                counterRow22[i] = new NormalCounter();
+            }
+            addObject(counterRow22[i], 20 + counterOffset + (9+i)*unitWidth, counterOffset + 8*unitWidth);
+        }
+        
+        Counter[] counterColumn1 = new Counter[2];
+        for (int i=0; i<counterColumn1.length; i++) {
+            counterColumn1[i] = new NormalCounter();
+            addObject(counterColumn1[i], 20 + counterOffset + (6)*unitWidth, counterOffset + (3+i)*unitWidth);
+        }
+        
+        Counter[] counterColumn2 = new Counter[3];
+        for (int i=0; i<counterColumn2.length; i++) {
+            counterColumn2[i] = new NormalCounter();
+            addObject(counterColumn2[i], 20 + counterOffset + (9)*unitWidth, counterOffset + (5+i)*unitWidth);
+        }
+        Plate plate1 = new Plate ();
+        Plate plate2 = new Plate ();
+        addObject (plate1, 20 + counterOffset + (9)*unitWidth, counterOffset + (5)*unitWidth);
+        addObject (plate2, 20 + counterOffset + (9)*unitWidth, counterOffset + (6)*unitWidth);
+        counterColumn2[0].setObjectOnTop(plate1);
+        counterColumn2[1].setObjectOnTop(plate2);
         
         LeftDeliveryCounter deliveryCounter = new LeftDeliveryCounter();
-        addObject(deliveryCounter, 20+14*unitWidth, 5*unitWidth);
-    
-        addObject (plateCounter, 20+14*unitWidth - counterOffset, 6*unitWidth + counterOffset);
+        addObject(deliveryCounter, 20 + (15)*unitWidth, 5*unitWidth);
+        addObject(plateCounter, 20 + (15)*unitWidth - counterOffset, 6*unitWidth + counterOffset);
         
-        // left column of counters
-        NormalCounter[] counter9 = new NormalCounter[3];
-        for (int i=0; i<3; i++) {
-            counter9[i] = new NormalCounter();
-            addObject(counter9[i],20+unitWidth+counterOffset,(i+3) * unitWidth + counterOffset);
-        }
-        
-        // second row of counters
-        NormalCounter[] counter10 = new NormalCounter[9];
-        for (int i=0; i<4; i++) {
-            counter10[i] = new NormalCounter();
-            addObject(counter10[i],20+(i+2)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
-        }
-        
-        CuttingCounter counter11 = new CuttingCounter();
-        addObject(counter11, 20+(6)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
     }
     
     public Onion generateOnion(PlayerController player) {

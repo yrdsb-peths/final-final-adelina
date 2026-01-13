@@ -30,17 +30,17 @@ public class EndWorld extends World
     Star star;
     
     int totalScore;
-    int levelOneOneStarScore = 20;
-    int levelOneTwoStarScore = 30;
-    int levelOneThreeStarScore = 40;
+    int levelOneOneStarScore = 30;
+    int levelOneTwoStarScore = 80;
+    int levelOneThreeStarScore = 120;
     
-    int levelTwoOneStarScore = 20;
-    int levelTwoTwoStarScore = 30;
-    int levelTwoThreeStarScore = 40;
+    int levelTwoOneStarScore = 30;
+    int levelTwoTwoStarScore = 100;
+    int levelTwoThreeStarScore = 140;
     
-    int levelThreeOneStarScore = 20;
-    int levelThreeTwoStarScore = 30;
-    int levelThreeThreeStarScore = 40;
+    int levelThreeOneStarScore = 30;
+    int levelThreeTwoStarScore = 50;
+    int levelThreeThreeStarScore = 70;
     
     int level;
     int numDelivered;
@@ -85,17 +85,17 @@ public class EndWorld extends World
         if (level == 2 && totalScore >= levelTwoOneStarScore) GameState.level3Unlocked = true;
         
         //if player total score is higher than record score, update record
-        if (level == 1 && totalScore > GameState.levelRecordScore[1]){
+        if (level == 1 && totalScore > GameState.levelRecordScore[0]){
+            GameState.levelRecordScore[0] = totalScore;
+            recordScore = GameState.levelRecordScore[0];
+        }
+        if (level == 2 && totalScore > GameState.levelRecordScore[1]){
             GameState.levelRecordScore[1] = totalScore;
             recordScore = GameState.levelRecordScore[1];
         }
-        if (level == 2 && totalScore > GameState.levelRecordScore[2]){
+        if (level == 3 && totalScore > GameState.levelRecordScore[2]){
             GameState.levelRecordScore[2] = totalScore;
-            GameState.levelRecordScore[2] = totalScore;
-        }
-        if (level == 3 && totalScore > GameState.levelRecordScore[3]){
-            GameState.levelRecordScore[3] = totalScore;
-            GameState.levelRecordScore[3] = totalScore;
+            recordScore = GameState.levelRecordScore[2];
         }
     }
     

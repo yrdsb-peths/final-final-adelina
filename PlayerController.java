@@ -9,7 +9,7 @@ import java.util.List;
 public class PlayerController extends SuperSmoothMover
 {
     //constant
-    private static final int SPEED = 20;
+    private static final int SPEED = 15;
     //variables
     private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
     int width = 60;
