@@ -14,6 +14,7 @@ public class LeftDeliveryCounter extends DeliveryCounter
         for (int i=0; i<4; i++) {
             deliveryCounter[i].rotate (90);
             selectedDeliveryCounter[i].rotate (90);
+
         }
         
         

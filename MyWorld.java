@@ -176,7 +176,7 @@ public class MyWorld extends World {
         addObject (counter12, 20+(13)*unitWidth + counterOffset,3*unitWidth+counterOffset);
         
         LeftDeliveryCounter deliveryCounter = new LeftDeliveryCounter();
-        addObject(deliveryCounter, 20+14*unitWidth-counterOffset, 5*unitWidth);
+        addObject(deliveryCounter, 20+14*unitWidth, 5*unitWidth);
     
         addObject (plateCounter, 20+14*unitWidth - counterOffset, 6*unitWidth + counterOffset);
         
@@ -210,7 +210,7 @@ public class MyWorld extends World {
             addObject(counterRow1[i], 20 + counterOffset + (5+i)*unitWidth, counterOffset + 2*unitWidth);
         }
         FrontDeliveryCounter deliveryCounter = new FrontDeliveryCounter();
-        addObject(deliveryCounter, 20 + 11*unitWidth, 2*unitWidth+counterOffset);
+        addObject(deliveryCounter, 20 + 11*unitWidth, 2*unitWidth);
         addObject (plateCounter, 20 + 12*unitWidth + counterOffset, 2*unitWidth+counterOffset);
         NormalCounter singleCounter1 = new NormalCounter();
         addObject (singleCounter1, 20 + 13*unitWidth + counterOffset, 2*unitWidth+counterOffset);

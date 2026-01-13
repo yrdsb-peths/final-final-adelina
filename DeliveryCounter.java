@@ -12,7 +12,6 @@ public class DeliveryCounter extends Counter
     GreenfootImage[] selectedDeliveryCounter = new GreenfootImage[4];
   
     int width = 120;
-    int height = 60;
     int imageIndex = 0;
     
     SimpleTimer animationTimer = new SimpleTimer();
@@ -20,13 +19,12 @@ public class DeliveryCounter extends Counter
     public DeliveryCounter() {
         for (int i=0; i<deliveryCounter.length; i++) {
             deliveryCounter[i] = new GreenfootImage("images/deliveryCounter/deliveryCounter" + i + ".PNG");
-            deliveryCounter[i].scale (width, height);
-        
+            deliveryCounter[i].scale(width, width);
         }
         
         for (int i=0; i<selectedDeliveryCounter.length; i++) {
             selectedDeliveryCounter[i] = new GreenfootImage("images/selectedDeliveryCounter/deliveryCounter" + i + ".PNG");
-            selectedDeliveryCounter[i].scale (width, height);
+            selectedDeliveryCounter[i].scale(width, width);
         }
         
         animationTimer.mark();
