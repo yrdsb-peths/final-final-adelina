@@ -29,7 +29,4 @@ public class HoldableObject extends Actor
         return isBeingHeld;
     }
     
-    public String getClassType(String classType) {
-        return classType;
-    }
 }

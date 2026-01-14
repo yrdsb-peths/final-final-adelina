@@ -8,21 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Food extends HoldableObject
 {
-    private String type;
-    int requiredCuttingTime = 200;
-    private int currentCuttingTime = 0;
-    
-    SimpleTimer cuttingTimer = new SimpleTimer();
-    
-    SuperStatBar cuttingStatusBar;
-    Color green = new Color (56, 255, 119);
-    Color grey = new Color (112, 112, 112);
+    protected int requiredCuttingTime = 200;
+    protected SimpleTimer cuttingTimer = new SimpleTimer();
+    protected SuperStatBar cuttingStatusBar;
+    protected Color green = new Color (56, 255, 119);
+    protected Color grey = new Color (112, 112, 112);
     
     private boolean hasBeenChopped = false;
+    private int currentCuttingTime = 0;
+    private String type;
+    
+    
+    
     
     public void act()
     {
-        // Add your action code here.
         super.act();
     }
     

@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Pot extends HoldableObject
 {
-    public GreenfootImage[] tomatoSoup = new GreenfootImage[3];
-    public GreenfootImage[] mushroomSoup = new GreenfootImage[3];
-    public GreenfootImage[] onionSoup = new GreenfootImage[3];
+    private GreenfootImage[] tomatoSoup = new GreenfootImage[3];
+    private GreenfootImage[] mushroomSoup = new GreenfootImage[3];
+    private GreenfootImage[] onionSoup = new GreenfootImage[3];
     private GreenfootImage emptyPot = new GreenfootImage("images/emptyPot.PNG");
     
     int width = 60;
@@ -23,7 +23,7 @@ public class Pot extends HoldableObject
     private int currentCookingTime = 0;
     
     private SimpleTimer cookingTimer = new SimpleTimer();
-    public SuperStatBar cookingStatusBar;
+    private SuperStatBar cookingStatusBar;
     private Color green = new Color (56, 255, 119);
     private Color grey = new Color (112, 112, 112);
     
@@ -114,4 +114,51 @@ public class Pot extends HoldableObject
     public void setRequiredCookingTime(int time) {
         requiredCookingTime = time;
     }
+    
+    public boolean tryAddFood(Food food) {
+        // First food defines soup type
+        if (numFoodInside == 0) {
+            type = food.getType();
+            setSoupStage(0);
+            setCookingTime(500);
+            numFoodInside = 1;
+            return true;
+        }
+    
+        // Subsequent foods must match type
+        if (!food.getType().equals(type)) return false;
+    
+        if (numFoodInside == 1) {
+            setSoupStage(1);
+            setCookingTime(800);
+            numFoodInside = 2;
+            return true;
+        }
+    
+        if (numFoodInside == 2) {
+            setSoupStage(2);
+            setCookingTime(1100);
+            numFoodInside = 3;
+            return true;
+        }
+    
+        return false;
+    }
+    
+    private void setSoupStage(int stage) {
+        if (type.equals("mushroom")) {
+            setImage(mushroomSoup[stage]);
+        } else if (type.equals("onion")) {
+            setImage(onionSoup[stage]);
+        } else if (type.equals("tomato")) {
+            setImage(tomatoSoup[stage]);
+        }
+    }
+    
+    private void setCookingTime(int time) {
+        requiredCookingTime = time;
+        cookingStatusBar.setMaxVal(time);
+        cookingTimer.mark();
+    }
+
 }
