@@ -35,8 +35,8 @@ public class EndWorld extends World
     int levelOneThreeStarScore = 120;
     
     int levelTwoOneStarScore = 30;
-    int levelTwoTwoStarScore = 100;
-    int levelTwoThreeStarScore = 140;
+    int levelTwoTwoStarScore = 60;
+    int levelTwoThreeStarScore = 90;
     
     int levelThreeOneStarScore = 30;
     int levelThreeTwoStarScore = 50;

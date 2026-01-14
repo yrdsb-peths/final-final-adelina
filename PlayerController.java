@@ -6,7 +6,7 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PlayerController extends SuperSmoothMover
+public class PlayerController extends Actor
 {
     //constant
     private static final int SPEED = 15;

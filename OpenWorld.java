@@ -34,7 +34,6 @@ public class OpenWorld extends World
         addObject(startButton, 890, 550);
         
         bgm = new GreenfootSound("openAndLevel.mp3");
-        bgm.playLoop();
         click.setVolume(40);
         
         resetGameState ();
@@ -48,6 +47,18 @@ public class OpenWorld extends World
         } else if (Greenfoot.mouseClicked(startLabel) || Greenfoot.mouseClicked(startButton)) {
             click.play();
             Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked,bgm));
+        }
+    }
+    
+    public void started() {
+        if (bgm != null) {
+            bgm.playLoop();
+        }
+    }
+    
+    public void stopped() {
+        if (bgm != null) {
+            bgm.pause();
         }
     }
     
