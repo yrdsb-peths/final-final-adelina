@@ -54,7 +54,7 @@ public class PlayerController extends Actor
      * "a" to get or place down holdable objects / add food to pot or plate
      * "w" to chop
      */
-    public void controlPlayer() {
+    private void controlPlayer() {
         int newX = getX();
         int newY = getY();
     

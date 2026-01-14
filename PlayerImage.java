@@ -8,26 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerImage extends Actor
 {
-    GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.PNG");
-    GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
-    GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
-    GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
-    GreenfootImage[] choppingPlayerFront = new GreenfootImage[2];
-    GreenfootImage[] choppingPlayerBack = new GreenfootImage[2];
-    GreenfootImage[] choppingPlayerLeft = new GreenfootImage[2];
-    GreenfootImage[] choppingPlayerRight = new GreenfootImage[2];
+    protected GreenfootImage FRONT;
+    protected GreenfootImage BACK;
+    protected GreenfootImage LEFT;
+    protected GreenfootImage RIGHT;
+    protected GreenfootImage[] choppingPlayerFront = new GreenfootImage[2];
+    protected GreenfootImage[] choppingPlayerBack = new GreenfootImage[2];
+    protected GreenfootImage[] choppingPlayerLeft = new GreenfootImage[2];
+    protected GreenfootImage[] choppingPlayerRight = new GreenfootImage[2];
+    protected int width = 85;
+    protected int height = 135;
+    protected String facingDirection;
+    protected SimpleTimer animationTimer = new SimpleTimer();
+    protected PlayerController controller;
     
-    String facingDirection;
     //image offset in the y direction in relation to the invisible player controller
     private int offSet = 20;
-    int width = 85;
-    int height = 135;
     private int animationGap = 100;
+    private int imageIndex = 0;
     
-    SimpleTimer animationTimer = new SimpleTimer();
-    int imageIndex = 0;
-    
-    PlayerController controller;
     
     public PlayerImage() {
         
@@ -68,7 +67,7 @@ public class PlayerImage extends Actor
     /**
      * when moving to a direction, change to the corresponding image
      */
-    public void changeDirection() {
+    private void changeDirection() {
         if (Greenfoot.isKeyDown(controller.leftKey)) {
             facingDirection = "left";
             setImage(LEFT);
