@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlayerImage here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Handles the visual representation and animation of the player, separate from gameplay logic.
+ * Responsibilities: Display correct facing direction, Play chopping animations, 
+ * Follow PlayerController
  */
 public class PlayerImage extends Actor
 {
@@ -40,30 +39,6 @@ public class PlayerImage extends Actor
         
     }
     
-    public void rescaleAndSetImages(int width, int height) {
-        FRONT.scale (width, height);
-        BACK.scale (width, height);
-        LEFT.scale (width, height);
-        RIGHT.scale (width, height);
-        
-        for (int i=0; i<2; i++) {
-            choppingPlayerFront[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
-            choppingPlayerFront[i].scale(width, height);
-        }
-        for (int i=0; i<2; i++) {
-            choppingPlayerBack[i] = new GreenfootImage ("images/playerChoppingBack/playerBlueChoppingBack" + i + ".PNG");
-            choppingPlayerBack[i].scale(width, height);
-        }
-        for (int i=0; i<2; i++) {
-            choppingPlayerLeft[i] = new GreenfootImage ("images/playerChoppingLeft/playerBlueChoppingLeft" + i + ".PNG");
-            choppingPlayerLeft[i].scale(width, height);
-        }
-        for (int i=0; i<2; i++) {
-            choppingPlayerRight[i] = new GreenfootImage ("images/playerChoppingRight/playerBlueChoppingRight" + i + ".PNG");
-            choppingPlayerRight[i].scale(width, height);
-        }
-    }
-    
     /**
      * when moving to a direction, change to the corresponding image
      */
@@ -83,6 +58,9 @@ public class PlayerImage extends Actor
         }
     }
     
+    /**
+     * Plays the chopping animation based on the player's facing direction.
+     */
     public void evokeChoppingAnimation() {
         if (facingDirection.equals("front")) {
             if(animationTimer.millisElapsed() < animationGap) {
@@ -120,14 +98,17 @@ public class PlayerImage extends Actor
     }
     
     /**
-     * player image is covered on top of the invisible controller
-     * so that when the controller collide with the counter, 
-     * its upper half may overlap the counter image to appear to be closer to it
+     * moves with player controller
      */
     public void moveWithPlayerController () {
         setLocation (controller.getX(), controller.getY()-offSet);
     }
     
+    /**
+     * Returns the direction the player is currently facing.
+     *
+     * @return "front", "back", "left", or "right"
+     */
     public String getFacingDirection() {
         return facingDirection;
     }

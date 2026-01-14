@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Plate here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Stores cooked soup and allows delivery to orders.
  */
 public class Plate extends HoldableObject
 {
@@ -34,10 +31,20 @@ public class Plate extends HoldableObject
         super.act();
     }
     
+    /**
+     * Checks whether the plate is empty.
+     *
+     * @return true if empty
+     */
     public boolean isEmpty() {
         return isEmpty;
     }
     
+    /**
+     * Sets the soup type currently on the plate.
+     *
+     * @param type the soup type
+     */
     public void setType(String type) {
         this.type = type;
     }

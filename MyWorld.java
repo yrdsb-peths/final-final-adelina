@@ -1,5 +1,14 @@
 import greenfoot.*;
 
+/**
+ * MyWorld is the main gameplay world for a specific level. 
+ * Responsibilities:
+ * - create players
+ * - Initialize and manage game counters, stoves, cutting stations, plates.
+ * - Generate new orders over time and track order delivery/failure.
+ * - Track points, delivered/failed orders, and remaining game time.
+ * - Transition to EndWorld when the level is completed.
+ */
 public class MyWorld extends World {
     public int unitWidth = 60;
     private int counterOffset = unitWidth/2;
@@ -30,6 +39,12 @@ public class MyWorld extends World {
     
     private GreenfootSound bgm;
     
+    /**
+     * Constructs the game world for a level with one or two players.
+     *
+     * @param level The level number to play.
+     * @param numPlayer Number of players (1 or 2).
+     */
     public MyWorld(int level, int numPlayer)
     {    
         super(1000, 600, 1); 
@@ -80,6 +95,10 @@ public class MyWorld extends World {
             prepareLevelThree();
         }
     }
+    
+    /**
+     * Handles game logic each frame: spawning orders, updating countdown, and ending the game.
+     */
     public void act() {
         generateNewOrder();
         
@@ -110,9 +129,6 @@ public class MyWorld extends World {
         return -1; // no empty slot
     }
     
-    /**
-     * generates new order when there is an open slot
-     */
     private void generateNewOrder() {
         // Check if enough time has passed
         if (newOrderTimer.millisElapsed() < newOrderTime) return;
@@ -128,10 +144,6 @@ public class MyWorld extends World {
         
     }
     
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
     private void prepareLevelOne()
     {
         //first row of counters
@@ -305,18 +317,38 @@ public class MyWorld extends World {
         
     }
     
+    /**
+     * Generates a new Onion object at the player's position.
+     *
+     * @param player The player holding the Onion.
+     * @return The Onion object added to the world.
+     */
     public Onion generateOnion(PlayerController player) {
         Onion onion = new Onion();
         addObject(onion, player.getX(), player.getY());
         onion.setIsBeingHeld (true);
         return onion;
     }
+    
+    /**
+     * Generates a new Mushroom object at the player's position.
+     *
+     * @param player The player holding the Mushroom.
+     * @return The Mushroom object added to the world.
+     */
     public Mushroom generateMushroom(PlayerController player) {
         Mushroom mushroom = new Mushroom();
         addObject(mushroom, player.getX(), player.getY());
         mushroom.setIsBeingHeld (true);
         return mushroom;
     }
+    
+    /**
+     * Generates a new Tomato object at the player's position.
+     *
+     * @param player The player holding the Tomato.
+     * @return The Tomato object added to the world.
+     */
     public Tomato generateTomato(PlayerController player) {
         Tomato tomato = new Tomato();
         addObject(tomato, player.getX(), player.getY());
@@ -324,19 +356,32 @@ public class MyWorld extends World {
         return tomato;
     }
     
+    /**
+     * Increases the player's points for a delivered order and updates the points label.
+     */
     public void increasePoints() {
         points += unitOrderEarning;
         pointLabel.setValue (points);
     }
+    
+    /**
+     * Decreases the player's points for a failed order and updates the points label.
+     */
     public void decreasePoints() {
         points -= unitOrderDecrease;
         pointLabel.setValue (points);
     }
     
+    /**
+     * Increments the count of successfully delivered orders.
+     */
     public void increaseNumOrderDelivered() {
         numOrderDelivered ++;
     }
     
+    /**
+     * Increments the count of failed orders.
+     */
     public void increaseNumOrderFailed() {
         numOrderFailed ++;
     }

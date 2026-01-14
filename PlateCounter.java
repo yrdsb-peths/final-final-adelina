@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlateCounter here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * PlateCounter is a Counter that holds plates.
+ * plate will regenerate on top of this counter
+ * player can retrieve plate from this counter
  */
 public class PlateCounter extends Counter
 {
@@ -15,12 +14,18 @@ public class PlateCounter extends Counter
     
     int numPlateOnTop = 0;
     
+    /**
+     * Creates a PlateCounter.
+     */
     public PlateCounter() {
         plateCounter.scale(width, width);
         selectedPlateCounter.scale(width, width);
         setImage (plateCounter);
     }
     
+    /**
+     * Changes its image when selected.
+     */
     public void act()
     {
         if (isSelected()) setImage (selectedPlateCounter);

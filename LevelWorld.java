@@ -1,11 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * LevelWorld is the level selection screen.
+ * It displays available levels, indicating which levels are unlocked, and provides buttons
+ * to start a selected level or access instructions.
  */
+
 public class LevelWorld extends World
 {
     GreenfootImage background = new GreenfootImage ("images/levelBackground.PNG");
@@ -19,6 +19,13 @@ public class LevelWorld extends World
     
     Color color = new Color (0, 71, 87);
     
+    /**
+     * Constructs the level selection world with unlocked levels and play a new bgm
+     *
+     * @param level1Unlocked True if level 1 is unlocked.
+     * @param level2Unlocked True if level 2 is unlocked.
+     * @param level3Unlocked True if level 3 is unlocked.
+     */
     public LevelWorld(boolean level1Unlocked, boolean level2Unlocked, boolean level3Unlocked)
     {    
         super(1000, 600, 1); 
@@ -45,6 +52,14 @@ public class LevelWorld extends World
         
     }
     
+    /**
+     * Constructs the level selection world with background music.
+     *
+     * @param level1Unlocked True if level 1 is unlocked.
+     * @param level2Unlocked True if level 2 is unlocked.
+     * @param level3Unlocked True if level 3 is unlocked.
+     * @param bgm Background music to continue playing.
+     */
     public LevelWorld(boolean level1Unlocked, boolean level2Unlocked, boolean level3Unlocked, GreenfootSound bgm)
     {    
         super(1000, 600, 1); 
@@ -70,6 +85,10 @@ public class LevelWorld extends World
         click.setVolume(40);
     }
     
+    /**
+     * Handles user interaction every frame.
+     * Starts the selected level or opens the instruction screen.
+     */
     public void act() {
         if (Greenfoot.mouseClicked(level1)) {
             click.play();

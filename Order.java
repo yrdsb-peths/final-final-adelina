@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Order here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Represents a customer order and tracks whether it has been fulfilled.
  */
 public class Order extends Actor
 {
@@ -96,6 +93,11 @@ public class Order extends Actor
         }
     }
     
+    /**
+     * Returns the soup type required by this order.
+     *
+     * @return the required soup type
+     */
     public String getType() {
         return type;
     }

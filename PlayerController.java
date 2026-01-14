@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
- * Write a description of class Player here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Controls player movement, interaction with counters,
+ * holding objects, and game actions such as chopping,
+ * cooking, and delivering food.
  */
 public class PlayerController extends Actor
 {

@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class OpenWorld here.
+ * OpenWorld is the starting screen of the game.
+ * It displays the game title, start button, and help button for instructions.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Responsibilities:
+ * - Provide entry point for the game.
+ * - Navigate to InstructionWorld or LevelWorld based on player input.
  */
 public class OpenWorld extends World
 {
@@ -17,6 +19,10 @@ public class OpenWorld extends World
     private GreenfootSound bgm;
     private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
     
+    /**
+     * Constructs the opening world of the game.
+     * Displays start and help buttons.
+     */
     public OpenWorld()
     {    
         super(1000, 600, 1); 
@@ -40,6 +46,10 @@ public class OpenWorld extends World
 
     }
     
+    /**
+     * Handles user interaction each frame.
+     * Moves to the instruction screen or level selection screen based on button clicks.
+     */
     public void act(){
         if (Greenfoot.mouseClicked(instructionLabel) || Greenfoot.mouseClicked(instructionButton)) {
             click.play();
@@ -50,12 +60,20 @@ public class OpenWorld extends World
         }
     }
     
+    /**
+     * Called when the world starts or resumes.
+     * Plays background music if available.
+     */
     public void started() {
         if (bgm != null) {
             bgm.playLoop();
         }
     }
     
+    /**
+     * Called when the world is paused or stopped.
+     * Pauses background music if available.
+     */
     public void stopped() {
         if (bgm != null) {
             bgm.pause();

@@ -1,13 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LeftDeliveryCounter here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * LeftDeliveryCounter is a DeliveryCounter rotated 90 degrees to face left.
  */
 public class LeftDeliveryCounter extends DeliveryCounter
 {
+    /**
+     * Creates a LeftDeliveryCounter (rotated 90 degrees).
+     */
     public LeftDeliveryCounter() {
         super();
         
@@ -16,10 +16,8 @@ public class LeftDeliveryCounter extends DeliveryCounter
             selectedDeliveryCounter[i].rotate (90);
 
         }
-        
-        
+    
         setImage (deliveryCounter[0]);
-        
     }
     
 }

@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Food here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Represents ingredients that can be chopped and added to pots.
+ * Responsibilities: Track chopping progress, Manage chopped state, 
+ * Provide food type
  */
 public class Food extends HoldableObject
 {
@@ -26,10 +25,19 @@ public class Food extends HoldableObject
         super.act();
     }
     
+    /**
+     * sets the type of this food.
+     *
+     * @param type The food type as a string, "mushroom", "onion", or "tomato"
+     */
     public void setType(String type) {
         this.type = type;
     }
-    
+    /**
+     * Returns the type of this food.
+     *
+     * @return the food type as a string, "mushroom", "onion", or "tomato"
+     */
     public String getType() {
         return type;
     }
@@ -45,7 +53,11 @@ public class Food extends HoldableObject
     protected void addedToWorld(World w) {
         w.addObject(cuttingStatusBar, getX(), getY() + 22);
     }
-    
+    /**
+     * Checks whether this food has been fully chopped.
+     *
+     * @return true if chopped, false otherwise
+     */
     public boolean hasBeenChopped() {
         return hasBeenChopped;
     }

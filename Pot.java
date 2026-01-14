@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pot here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Manages soup cooking logic, including ingredient tracking, cooking time, and visual updates.
+ * Responsibilities: Accept valid food, Track cooking progress, 
+ * Expose cooking state
  */
 public class Pot extends HoldableObject
 {
@@ -115,6 +114,13 @@ public class Pot extends HoldableObject
         requiredCookingTime = time;
     }
     
+    /**
+     * Attempts to add a food item to the pot.
+     * The food must be chopped and match the pot's current soup type.
+     *
+     * @param food the Food to add
+     * @return true if the food was successfully added
+     */
     public boolean tryAddFood(Food food) {
         // First food defines soup type
         if (numFoodInside == 0) {

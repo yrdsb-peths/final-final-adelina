@@ -1,10 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DeliveryCounter here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * DeliveryCounter is a Counter for completing and delivering orders.
+ * It has an animated image that cycles through frames, and a selected animation when chosen.
  */
 public class DeliveryCounter extends Counter
 {
@@ -16,6 +14,9 @@ public class DeliveryCounter extends Counter
     
     SimpleTimer animationTimer = new SimpleTimer();
     
+    /**
+     * Creates a new DeliveryCounter with animated frames.
+     */
     public DeliveryCounter() {
         for (int i=0; i<deliveryCounter.length; i++) {
             deliveryCounter[i] = new GreenfootImage("images/deliveryCounter/deliveryCounter" + i + ".PNG");
@@ -30,6 +31,9 @@ public class DeliveryCounter extends Counter
         animationTimer.mark();
     }
     
+    /**
+     * Animates the delivery counter frames.
+     */
     public void act()
     {
         // Add your action code here.
@@ -37,7 +41,7 @@ public class DeliveryCounter extends Counter
         else animateDeliveryCounter (deliveryCounter);
     }
     
-    public void animateDeliveryCounter(GreenfootImage[] image) {
+    private void animateDeliveryCounter(GreenfootImage[] image) {
         if (animationTimer.millisElapsed() < 100) {
             return;
         }

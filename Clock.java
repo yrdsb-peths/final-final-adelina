@@ -1,21 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Watch here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Clock displays a clock image on the screen.
  */
 public class Clock extends Actor
 {
     GreenfootImage clock = new GreenfootImage ("images/clock.PNG");
+    
+    /**
+     * Creates a new Clock actor displaying a clock image.
+     */
     public Clock() {
         clock.scale (120, 120);
         setImage(clock);
-    }
-    
-    public void act()
-    {
-        // Add your action code here.
     }
 }

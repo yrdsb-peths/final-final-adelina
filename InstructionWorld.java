@@ -1,11 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Instruction here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * InstructionWorld displays the game instructions to the player.
+ * It shows a static instruction image and a continue button to proceed to the level selection.
  */
+
 public class InstructionWorld extends World
 {
     GreenfootImage instruction = new GreenfootImage ("images/instruction.PNG");
@@ -16,7 +15,12 @@ public class InstructionWorld extends World
     private GreenfootSound bgm;
     private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
 
-    
+    /**
+     * Constructs the InstructionWorld screen.
+     * Displays game instructions and a continue button.
+     *
+     * @param bgm Background music to continue playing.
+     */
     public InstructionWorld(GreenfootSound bgm)
     {    
         super(1000, 600, 1); 
@@ -32,6 +36,10 @@ public class InstructionWorld extends World
         click.setVolume(40);
     }
     
+    /**
+     * Handles user interaction every frame.
+     * Moves to the level selection screen if the continue button is clicked.
+     */
     public void act() {
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
             GameState s = new GameState();

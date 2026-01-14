@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class foodCounter here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * FoodCounter is a Counter representing a food ingredient station.
+ * Different types of food (mushroom, tomato, onion) determine the displayed image.
+ * Provide access to the type of food stored on the counter.
  */
 public class FoodCounter extends Counter
 {
@@ -19,7 +18,10 @@ public class FoodCounter extends Counter
     
     int width = 60;
     
-    
+    /**
+     * Creates a FoodCounter of the given type.
+     * @param type the type of food ("mushroom", "tomato", "onion")
+     */
     public FoodCounter(String type) {
 
         this.type = type;
@@ -38,9 +40,9 @@ public class FoodCounter extends Counter
             setImage (onionCounter);
         }
     }
+    
     /**
-     * Act - do whatever the foodCounter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Changes its image when selected.
      */
     public void act()
     {
@@ -57,6 +59,10 @@ public class FoodCounter extends Counter
         }
     }
     
+    /**
+     * Returns the type of food this counter represents.
+     * @return type of food as a String
+     */
     public String getType() {
         return type;
     }

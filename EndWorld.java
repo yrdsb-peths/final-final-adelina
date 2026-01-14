@@ -1,11 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndWorld here.
+ * EndWorld is the game over screen that appears after a level ends.
+ * It displays the player's total score, stars earned, number of orders delivered and failed,
+ * the level record, and provides a button to continue to the level selection screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Responsibilities:
+ * - Show end-of-level statistics
+ * - Update GameState for unlocked levels and high scores.
+ * - Play end-level sound effects and handle continue button clicks.
  */
+
 public class EndWorld extends World
 {
     GreenfootImage endImage = new GreenfootImage ("images/endImage.PNG");
@@ -50,7 +55,15 @@ public class EndWorld extends World
     
     private GreenfootSound endSound = new GreenfootSound ("sounds/levelVictorySound.mp3");
     private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
-
+    
+    /**
+     * Constructs the EndWorld screen after a level ends.
+     * Displays score, stars, records, and a continue button.
+     *
+     * @param level The level number that just ended.
+     * @param numDelivered The number of orders successfully delivered.
+     * @param numFailed The number of orders that failed.
+     */
     public EndWorld(int level, int numDelivered, int numFailed)
     {    
         super(1000, 600, 1); 
@@ -72,6 +85,10 @@ public class EndWorld extends World
         click.setVolume(40);
     }
     
+    /**
+     * Handles user interaction every frame.
+     * Checks if the continue button is clicked to return to the level selection screen.
+     */
     public void act() {
         //if clicks on the continue button, go to level world
         if (Greenfoot.mouseClicked(continueLabel) || Greenfoot.mouseClicked(continueButton)) {
@@ -80,7 +97,7 @@ public class EndWorld extends World
         }
     }
     
-    public void updateGameState() {
+    private void updateGameState() {
         //if player scores one star or higher on level one, level 2 will be unlocked
         if (level == 1 && totalScore >= levelOneOneStarScore) GameState.level2Unlocked = true;
         
@@ -102,7 +119,7 @@ public class EndWorld extends World
         }
     }
     
-    public void addTexts() {
+    private void addTexts() {
         addObject(completeLabel, 8*60 + 20, 60+30);
         addObject(ordersDeliveredLabel, 6*60 + 63, 3*60 + 3);
         addObject(ordersFailedLabel, 6*60 + 50, 4*60);
@@ -124,7 +141,7 @@ public class EndWorld extends World
         addObject (recordNum, 9*60 + 20 + 30, 7*60 + 20);
     }
     
-    public void setTextColor() {
+    private void setTextColor() {
         ordersDeliveredCalculation.setFillColor(color);
         ordersFailedCalculation.setFillColor(color);
         levelLabel.setFillColor(color);
@@ -146,14 +163,14 @@ public class EndWorld extends World
         recordNum.setLineColor(color);
     }
     
-    public void addContinueButton() {
+    private void addContinueButton() {
         continueLabel = new Label ("continue", 35);
         continueButton = new Button (160, 60, blue);
         addObject(continueButton, 8*60 + 20, 8*60 + 20);
         addObject(continueLabel, 8*60 + 20, 8*60 + 20);
     }
     
-    public void setStarImage() {
+    private void setStarImage() {
         if (level == 1) {
             if (totalScore < levelOneOneStarScore){
                 star = new Star (0);

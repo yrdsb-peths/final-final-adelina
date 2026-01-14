@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerRedImage extends PlayerImage
 {
+    /**
+     * Constructs a new PlayerRedImage that follows a PlayerController.
+     *
+     * @param controller the PlayerController that this image will follow
+     */
     public PlayerRedImage(PlayerController controller) {
         //set the controller that this image will follow
         this.controller = controller;
@@ -21,7 +26,7 @@ public class PlayerRedImage extends PlayerImage
         animationTimer.mark();
     }
     
-    public void rescaleAndSetImages(int width, int height) {
+    private void rescaleAndSetImages(int width, int height) {
         FRONT = new GreenfootImage ("images/playerRedFront.PNG");
         BACK = new GreenfootImage ("images/playerRedBack.PNG");
         LEFT = new GreenfootImage ("images/playerRedFacingLeft.PNG");

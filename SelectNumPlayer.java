@@ -1,10 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SelectNumPlayer here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * SelectNumPlayer is the world where the player selects the number of players (1 or 2) before starting a level.
+ * It shows level information, record score, and provides buttons for selection.
  */
 public class SelectNumPlayer extends World
 {
@@ -24,6 +22,11 @@ public class SelectNumPlayer extends World
     
     private GreenfootSound click = new GreenfootSound("sounds/clicking.mp3");
         
+    /**
+     * Constructs the world for selecting the number of players before a level.
+     *
+     * @param level The level number being selected.
+     */
     public SelectNumPlayer(int level)
     {    
         super(1000, 600, 1); 
@@ -36,6 +39,10 @@ public class SelectNumPlayer extends World
         
     }
     
+    /**
+     * Handles user interaction each frame.
+     * Navigates back, or starts the game with one or two players.
+     */
     public void act() {
         if (Greenfoot.mouseClicked(returnLabel) || Greenfoot.mouseClicked(returnButton)) {
             Greenfoot.setWorld (new LevelWorld(GameState.level1Unlocked, GameState.level2Unlocked, GameState.level3Unlocked));

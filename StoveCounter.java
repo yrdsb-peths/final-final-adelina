@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class stoveCounter here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * StoveCounter is a Counter representing a stove for cooking.
+ * It automatically spawns a Pot object when added to the world.
+ * soup can only be cooked when placed on top stove counters
  */
 public class StoveCounter extends Counter
 {
@@ -13,6 +12,9 @@ public class StoveCounter extends Counter
     
     int width = 60;
     
+    /**
+     * Creates a StoveCounter.
+     */
     public StoveCounter() {
         stoveCounter.scale(width, width);
         selectedStoveCounter.scale(width, width);
@@ -20,11 +22,15 @@ public class StoveCounter extends Counter
         
     }
     
+    /**
+     * Changes its image when selected.
+     */
     public void act()
     {
         if (isSelected()) setImage (selectedStoveCounter);
         else setImage (stoveCounter);
     }
+    
     protected void addedToWorld(World w)
     {
         Pot pot = new Pot();
@@ -33,5 +39,4 @@ public class StoveCounter extends Counter
         w.addObject(pot, getX(), getY());
         this.setObjectOnTop(pot);
     }
-    
 }
