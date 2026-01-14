@@ -35,7 +35,7 @@ public class EndWorld extends World
     Star star;
     
     int totalScore;
-    int levelOneOneStarScore = 30;
+    int levelOneOneStarScore = 20;
     int levelOneTwoStarScore = 80;
     int levelOneThreeStarScore = 120;
     
