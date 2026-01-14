@@ -26,6 +26,9 @@ public class PlayerImage extends Actor
     private int animationGap = 100;
     private int imageIndex = 0;
     
+    /**
+     * Updates the image position and facing direction each frame.
+     */
     public void act()
     {
         // Add your action code here.

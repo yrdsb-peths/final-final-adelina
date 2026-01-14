@@ -25,6 +25,16 @@ public class PlayerController extends Actor
     private GreenfootSound placeFoodSound = new GreenfootSound ("sounds/placeFoodSound.mp3");
     GreenfootSound choppingSound = new GreenfootSound("choppingSound.mp3");
     
+    /**
+     * Creates a new PlayerController with custom control keys.
+     *
+     * @param left  key used to move left
+     * @param right key used to move right
+     * @param up    key used to move up
+     * @param down  key used to move down
+     * @param action key used to interact with objects
+     * @param chop   key used to chop food
+     */
     public PlayerController (String left, String right, String up, String down,
                         String action, String chop) {
         controller.scale(width,width);
@@ -38,17 +48,25 @@ public class PlayerController extends Actor
         chopKey = chop;
     }
     
+    /**
+     * Updates player movement and keeps held objects aligned with the player.
+     */
     public void act()
     {
         controlPlayer();
         if(holdingObject != null) holdingObject.moveWithPlayer(this);
     }
     
+    /**
+     * Assigns a PlayerImage to visually represent this controller.
+     *
+     * @param image the PlayerImage associated with this controller
+     */
     public void setPlayerImage(PlayerImage image) {
         playerImage = image;
     }
 
-    /**
+    /*
      * use arrows to move the player
      * "a" to get or place down holdable objects / add food to pot or plate
      * "w" to chop
@@ -86,7 +104,7 @@ public class PlayerController extends Actor
         }
     }
     
-    /**
+    /*
      * delivers food in plate to a devivery counter if possible
      */
     private void checkIfDeliverFood() {
@@ -121,7 +139,8 @@ public class PlayerController extends Actor
             return;
         }
     }
-    /**
+    
+    /*
      * serves food to plate if possible
      */
     private void checkIfServeFoodToPlate() {
@@ -160,7 +179,7 @@ public class PlayerController extends Actor
         holdingPlate.setIsEmpty(false);
     }
     
-    /**
+    /*
      * returns if player will collide with a counter object
      */ 
     private boolean willCollide(int nextX, int nextY) {
@@ -178,10 +197,10 @@ public class PlayerController extends Actor
         return counter != null;
     }
     
-    /**
+    /*
      * return the number of nearby counter objects
      */
-    public int getNumNearbyCounters() {
+    private int getNumNearbyCounters() {
         boolean up    = getOneObjectAtOffset(0, -55, Counter.class) != null;
         boolean down  = getOneObjectAtOffset(0,  55, Counter.class) != null;
         boolean left  = getOneObjectAtOffset(-55, 0, Counter.class) != null;
@@ -305,7 +324,7 @@ public class PlayerController extends Actor
         }
     }
     
-    /**
+    /*
      * add food to pot if all conditions satisfied
      */
     private void checkIfAddFoodToPot() {
@@ -336,7 +355,7 @@ public class PlayerController extends Actor
 
     }
     
-    /**
+    /*
      * remove player holdingObject from world and set player status to not holding objects
      */
     private void removeHoldingObject() {
@@ -346,14 +365,19 @@ public class PlayerController extends Actor
         isHoldingObject = false;
     }
     
+    /**
+     * Sets the object currently being held by the player.
+     *
+     * @param object the HoldableObject to hold
+     */
     public void setHoldingObject (HoldableObject object) {
         holdingObject = object;
     }
     
-    /**
+    /*
      * returns true if player can chop
      */
-    public boolean choppingConditionSatisfied() {
+    private boolean choppingConditionSatisfied() {
         String dir = playerImage.getFacingDirection();
         Counter counterInFront = getCounterInFront(dir);
         

@@ -1,7 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Represents a customer order and tracks whether it has been fulfilled.
+ * Represents a customer order in the game.
+ * 
+ * An Order displays a requested soup type and includes a countdown timer.
+ * If the order is not fulfilled before time runs out, the player loses points
+ * and the order is marked as failed.
  */
 public class Order extends Actor
 {
@@ -23,6 +27,10 @@ public class Order extends Actor
     
     private GreenfootSound failedSound = new GreenfootSound ("sounds/failedSound.mp3");
     
+    /**
+     * Creates a new Order with a randomly selected soup type.
+     * Initializes the order timer and countdown progress bar.
+     */
     public Order() {
         tomatoSoupOrder.scale(width, height);
         mushroomSoupOrder.scale(width, height);
@@ -34,6 +42,12 @@ public class Order extends Actor
         countDownBar = new SuperStatBar(orderTime, orderTime, this, 110, 5, -40, green, grey);
     }
     
+    /**
+     * Updates the order countdown timer.
+     * 
+     * If the timer expires, the order is removed, points are deducted,
+     * and a failure sound is played.
+     */
     public void act()
     {
         updateCountDownBar();
@@ -46,6 +60,12 @@ public class Order extends Actor
         }
     }
     
+    /**
+    * Called when this orde is added to the world.
+    * Adds the order countdown bar.
+    *
+    * @param w the world this pot was added to
+    */
     protected void addedToWorld(World w) {
         w.addObject(countDownBar, getX(), getY() - 30);
     }
@@ -64,6 +84,10 @@ public class Order extends Actor
         }
     }
     
+    /**
+     * Removes this order from the world and clears its reference
+     * from the world's active order list.
+     */
     public void removeSelf() {
         MyWorld w = (MyWorld) getWorld();
     
@@ -94,9 +118,9 @@ public class Order extends Actor
     }
     
     /**
-     * Returns the soup type required by this order.
+     * Returns the type of soup requested by this order.
      *
-     * @return the required soup type
+     * @return the soup type as a String (e.g. "tomato", "onion", "mushroom")
      */
     public String getType() {
         return type;

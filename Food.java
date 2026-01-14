@@ -17,11 +17,6 @@ public class Food extends HoldableObject
     private int currentCuttingTime = 0;
     private String type;
     
-    public void act()
-    {
-        super.act();
-    }
-    
     /**
      * sets the type of this food.
      *

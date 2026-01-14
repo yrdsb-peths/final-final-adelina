@@ -31,6 +31,11 @@ public class StoveCounter extends Counter
         else setImage (stoveCounter);
     }
     
+    /**
+     * Called when this counter is added to the world.
+     * Automatically adds a Pot object at the stove's location.
+     * @param w the world this counter was added to
+     */
     protected void addedToWorld(World w)
     {
         Pot pot = new Pot();
