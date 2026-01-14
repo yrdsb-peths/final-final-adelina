@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelButton here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * LevelButton represents a selectable level button in the level menu.
  */
 public class LevelButton extends Actor
 {
@@ -17,6 +14,12 @@ public class LevelButton extends Actor
     private int level;
     private boolean unlocked;
     
+    /**
+     * Creates a LevelButton for a specific level.
+     *
+     * @param level the level number
+     * @param unlocked whether the level is unlocked
+     */
     public LevelButton(int level, boolean unlocked) {
         this.level = level;
         this.unlocked = unlocked;
@@ -32,11 +35,11 @@ public class LevelButton extends Actor
         }
     }
     
-    public void act()
-    {
-        // Add your action code here.
-    }
-    
+     /**
+     * Returns whether this level is unlocked.
+     *
+     * @return true if unlocked, false otherwise
+     */
     public boolean isUnlocked() {
         return unlocked;
     }

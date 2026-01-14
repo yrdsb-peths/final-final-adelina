@@ -15,6 +15,9 @@ public class Plate extends HoldableObject
     private boolean isEmpty;
     private String type;
     
+    /**
+     * Creates an empty Plate.
+     */
     public Plate() {
         emptyPlate.scale(width, height);
         tomatoSoupPlate.scale(width, height);
@@ -23,12 +26,6 @@ public class Plate extends HoldableObject
         
         setImage(emptyPlate);
         isEmpty = true;
-    }
-    
-    public void act()
-    {
-        // Add your action code here.
-        super.act();
     }
     
     /**
@@ -49,22 +46,41 @@ public class Plate extends HoldableObject
         this.type = type;
     }
     
+    /**
+     * Changes the plate image to tomato soup.
+     */
     public void setImageToTomatoSoupPlate() {
         setImage (tomatoSoupPlate);
     }
     
+    /**
+     * Changes the plate image to onion soup.
+     */
     public void setImageToOnionSoupPlate() {
         setImage (onionSoupPlate);
     }
     
+    /**
+     * Changes the plate image to mushroom soup.
+     */
     public void setImageToMushroomSoupPlate() {
         setImage (mushroomSoupPlate);
     }
     
+    /**
+    * Sets whether the plate is empty.
+    *
+    * @param isEmpty true if empty, false otherwise
+    */
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
     
+    /**
+     * Returns the type of soup on this plate.
+     *
+     * @return soup type
+     */
     public String getType() {
         return type;
     }

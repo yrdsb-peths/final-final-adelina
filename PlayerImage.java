@@ -26,11 +26,6 @@ public class PlayerImage extends Actor
     private int animationGap = 100;
     private int imageIndex = 0;
     
-    
-    public PlayerImage() {
-        
-    }
-    
     public void act()
     {
         // Add your action code here.
@@ -39,9 +34,6 @@ public class PlayerImage extends Actor
         
     }
     
-    /**
-     * when moving to a direction, change to the corresponding image
-     */
     private void changeDirection() {
         if (Greenfoot.isKeyDown(controller.leftKey)) {
             facingDirection = "left";

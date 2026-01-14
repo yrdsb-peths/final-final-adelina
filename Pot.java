@@ -28,6 +28,9 @@ public class Pot extends HoldableObject
     
     private boolean finishedCooking = false;
     
+    /**
+     * Creates an empty Pot with cooking animations and a progress bar.
+     */
     public Pot() {
         emptyPot.scale(width, height);
         numFoodInside = 0;
@@ -51,15 +54,22 @@ public class Pot extends HoldableObject
         setImage(emptyPot);
     }
 
+    /**
+     * Increases cooking time if placed on a stove.
+     */
     public void act()
     {
-        // Add your action code here.
-        super.act();
         if(getOneObjectAtOffset(0, 0, Counter.class) instanceof StoveCounter) {
             increaseCurrentCuttingTime();
         }
     }
     
+    /**
+    * Called when this pot is added to the world.
+    * Adds the cooking progress bar.
+    *
+    * @param w the world this pot was added to
+    */
     protected void addedToWorld(World w) {
         w.addObject(cookingStatusBar, getX(), getY() + 22);
     }
@@ -72,6 +82,11 @@ public class Pot extends HoldableObject
         cookingStatusBar.update(currentCookingTime);
     }
     
+    /**
+    * Returns whether the soup has finished cooking.
+    *
+    * @return true if cooking is complete
+    */
     public boolean hasFinishedCooking() {
         return currentCookingTime == requiredCookingTime && numFoodInside == 3;
     }
@@ -93,27 +108,16 @@ public class Pot extends HoldableObject
         cookingTimer.mark();
         
     }
-    
-    public void setNumFoodInside(int num) {
-        numFoodInside = num;
-    }
-    
-    public void setType(String type) {
-        this.type = type;
-    }
-    
+
+    /**
+     * Returns the soup type.
+     *
+     * @return soup type
+     */
     public String getType() {
         return type;
     }
-    
-    public int getNumFoodInside() {
-        return numFoodInside;
-    }
-    
-    public void setRequiredCookingTime(int time) {
-        requiredCookingTime = time;
-    }
-    
+
     /**
      * Attempts to add a food item to the pot.
      * The food must be chopped and match the pot's current soup type.

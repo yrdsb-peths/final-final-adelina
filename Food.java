@@ -17,9 +17,6 @@ public class Food extends HoldableObject
     private int currentCuttingTime = 0;
     private String type;
     
-    
-    
-    
     public void act()
     {
         super.act();
@@ -42,6 +39,10 @@ public class Food extends HoldableObject
         return type;
     }
     
+    /**
+     * Increases the chopping progress if enough time has passed.
+     * Updates the chopping progress bar.
+     */
     public void increaseCurrentCuttingTime() {
         if(cuttingTimer.millisElapsed() >= 5 && currentCuttingTime < requiredCuttingTime)currentCuttingTime += 5;
         else return;
@@ -50,9 +51,16 @@ public class Food extends HoldableObject
         cuttingStatusBar.update(currentCuttingTime);
     }
     
+    /**
+     * Called when this object is added to the world.
+     * Adds the chopping progress bar beneath the food.
+     *
+     * @param w the world this food was added to
+     */
     protected void addedToWorld(World w) {
         w.addObject(cuttingStatusBar, getX(), getY() + 22);
     }
+    
     /**
      * Checks whether this food has been fully chopped.
      *
@@ -62,10 +70,20 @@ public class Food extends HoldableObject
         return hasBeenChopped;
     }
     
+    /**
+     * Returns whether the chopping process is complete.
+     *
+     * @return true if chopping is finished
+     */
     public boolean hasFinishedChopping() {
         return currentCuttingTime == requiredCuttingTime;
     }
     
+    /**
+     * Sets whether this food has been chopped.
+     *
+     * @param hasBeenChopped true if chopped, false otherwise
+     */
     public void setHasBeenChopped(boolean hasBeenChopped) {
         this.hasBeenChopped = hasBeenChopped;
     }

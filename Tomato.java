@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tomato here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Tomato is a Food item that can be chopped into a tomato ingredient.
  */
 public class Tomato extends Food
 {    
@@ -13,6 +10,9 @@ public class Tomato extends Food
     int width = 80;
     int width2 = 60;
     
+    /**
+     * Creates a Tomato with default images and chopping settings.
+     */
     public Tomato() {
         tomato.scale(width, width);
         choppedTomato.scale(width2, width2);
@@ -25,9 +25,4 @@ public class Tomato extends Food
         
     }
     
-    public void act()
-    {
-        // Add your action code here.
-        super.act();
-    }
 }

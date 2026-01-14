@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Onion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Onion is a Food item that can be chopped into an onion ingredient.
  */
 public class Onion extends Food
 {
@@ -13,6 +10,9 @@ public class Onion extends Food
     int width = 80;
     int width2 = 60;
     
+    /**
+     * Creates an Onion with default images and chopping settings.
+     */
     public Onion() {
         onion.scale(width, width);
         choppedOnion.scale(width2, width2);
@@ -25,9 +25,4 @@ public class Onion extends Food
         
     }
     
-    public void act()
-    {
-        // Add your action code here.
-        super.act();
-    }
 }
