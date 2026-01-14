@@ -31,13 +31,13 @@ public class OpenWorld extends World
         
         instructionLabel = new Label ("HELP", 35);
         instructionButton = new Button(160, 60, color);
-        addObject(instructionLabel, 110, 550);
-        addObject(instructionButton, 110, 550);
+        addObject(instructionLabel, 890, 550);
+        addObject(instructionButton, 890, 550);
         
         startLabel = new Label ("START", 35);
         startButton = new Button(160, 60, color);
-        addObject(startLabel, 890, 550);
-        addObject(startButton, 890, 550);
+        addObject(startLabel, 110, 550);
+        addObject(startButton, 110, 550);
         
         bgm = new GreenfootSound("openAndLevel.mp3");
         click.setVolume(40);
