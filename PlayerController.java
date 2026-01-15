@@ -8,7 +8,7 @@ import java.util.List;
 public class PlayerController extends Actor
 {
     //constant
-    private static final int SPEED = 15;
+    private static final int SPEED = 10;
     //variables
     private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
     int width = 60;
